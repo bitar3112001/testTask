@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\student;
-use App\Http\Requests\StorestudentRequest;
-use App\Http\Requests\UpdatestudentRequest;
+use App\Models\customer;
+use App\Http\Requests\StorecustomerRequest;
+use App\Http\Requests\UpdatecustomerRequest;
 
-class StudentController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorestudentRequest $request)
+    public function store(StorecustomerRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(student $student)
+    public function show(customer $customer)
     {
         //
     }
@@ -43,7 +43,7 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(student $student)
+    public function edit(customer $customer)
     {
         //
     }
@@ -51,7 +51,7 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatestudentRequest $request, student $student)
+    public function update(UpdatecustomerRequest $request, customer $customer)
     {
         //
     }
@@ -59,7 +59,7 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(student $student)
+    public function destroy(customer $customer)
     {
         //
     }
