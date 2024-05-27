@@ -61,7 +61,13 @@
 			<!-- /.title -->
 			<ul class="menu js__accordion">
 				<li>
-					<a class="waves-effect" href="index.html"><i class="menu-icon ti-dashboard"></i><span>Dashboard</span></a>
+					<a class="waves-effect" href="{{ route('addEmployee') }}"><i class="menu-icon fa fa-user-plus"></i><span>Add Employee</span></a>
+				</li>
+                <li>
+					<a class="waves-effect" href="{{ route('addCustomer') }}"><i class="menu-icon fa fa-user"></i><span>Add Customer</span></a>
+				</li>
+                <li>
+					<a class="waves-effect" href="{{ route('addRole') }}"><i class="menu-icon fa fa-hand-stop-o"></i><span>Add Role</span></a>
 				</li>
 				<li>
 					<a class="waves-effect" href="calendar.html"><i class="menu-icon ti-calendar"></i><span>Calendar</span></a>

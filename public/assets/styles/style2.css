@@ -1334,7 +1334,7 @@ label {
     overflow: visible;
 }
 .menu-active body {
-    height: auto;
+    height: 100%;
 }
 }.fixed-navbar {
     height: 50px;

@@ -14,11 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/side',function(){
-    return view('side');
-});
-Route::get('/home',function(){
     return view('home');
 });
+
+Route::get('/admin/addRole',function(){
+    return view('admin.Role.AddRole');
+})->name('addRole');
+Route::get('/admin/addEmployee',function(){
+    return view('admin.Employee.AddEmployee');
+})->name('addEmployee');
+Route::get('/customer/addCustomer',function(){
+    return view('customer.addCustomer');
+})->name('addCustomer');
