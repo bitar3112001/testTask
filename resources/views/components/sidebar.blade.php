@@ -6,9 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta name="description" content="">
 	<meta name="author" content="">
-
 	<title>Youbee</title>
-
+	
 	<!-- Main Styles -->
     <link rel="stylesheet" href="{{asset('assets/styles/style2.css')}}">
 	{{-- <link rel="stylesheet" href="{{asset('assets/styles/style.css')}}"> --}}
@@ -32,9 +31,6 @@
 
 	<!-- Dark Themes -->
 	<link rel="stylesheet" href="{{asset('assets/styles/style-black.min.css')}}">
-
-
-
     <style>
         .navigation .menu a:hover{
     color: #fca311;
@@ -43,6 +39,8 @@
             color: #fca311
         }
     </style>
+	
+	
 </head>
 
 <body>
