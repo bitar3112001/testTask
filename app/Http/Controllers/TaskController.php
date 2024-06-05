@@ -10,8 +10,9 @@ use Illuminate\Http\Request;
 class TaskController extends Controller
 {
    public    function TaskView(){
-       $projects= Project::all();
-        return view('tasks/task',['projects'=>$projects]);
+       $projects= Project::where('type','project')->get();//get() method: This method executes the query and returns the results.
+       $tasks= Project::where('type','task')->get();
+       return view('tasks/task',['projects'=>$projects],['tasks'=>$tasks]);
     }
 
     public function NewTask(Request $request){
@@ -24,13 +25,23 @@ class TaskController extends Controller
 
   
      $projectId = $params['project_id'];
-
+         $project = Project::find($projectId);
      // Count the number of tasks already associated with the project
      $taskCount = Tasks::where('project_id', $projectId)->count();
+     if ($project->type == 'project') {
+        $taskLimit = 4;
+    } else {
+        $taskLimit = 1;
+    }
 
-     if ($taskCount >= 4) {
-        // Redirect back with an error message if the limit is exceeded
-        return redirect('/admin/task')->withErrors(['error' => 'A project can have a maximum of 4 tasks.']);
+    // Check if the task count exceeds the limit and set the appropriate error message
+    if ($taskCount >= $taskLimit) {
+        if ($project->type == 'project') {
+            $errorMessage = 'A project can have a maximum of 4 tasks.';
+        } else {
+            $errorMessage = 'A task can only have 1 task associated with it.';
+        }
+        return redirect('/admin/task')->withErrors(['error' => $errorMessage]);
     }
     Tasks::create($params);
      return redirect('/admin/task')->with('succes','new task has been created');
