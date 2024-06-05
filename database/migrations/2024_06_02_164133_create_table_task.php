@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('task', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->timestamp('deploy_date')->nullable();
-            $table->timestamp('submit_date')->nullable();
+            $table->date('deploy_date')->nullable();
+            $table->date('submit_date')->nullable();
             $table->unsignedBigInteger('project_id');
-            $table->unsignedBigInteger('description_id');
+            $table->longText('description');
             $table->foreign('project_id')->references('id')->on('project');
-            $table->foreign('description_id')->references('id')->on('description');
         });
     }
 
