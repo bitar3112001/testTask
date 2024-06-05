@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('project_id');
             $table->longText('description');
             $table->foreign('project_id')->references('id')->on('project');
+            $table->enum('status',['pending','done','late','end'])->nullable()->default('pending');
         });
     }
 
