@@ -29,6 +29,6 @@ Route::get('/customer/addCustomer',function(){
 })->name('addCustomer');
 
  Route::get('/admin/task',[TaskController::class,'TaskView']);
-
+ Route::post('/admin/task',[TaskController::class,'NewTask']);
 Route::get('/admin/assignment',[TaskController::class,'AssignmentView']);
 Route::post('/admin/assignment',[TaskController::class,'NewProject']);

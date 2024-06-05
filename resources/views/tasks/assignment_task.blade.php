@@ -10,7 +10,6 @@
       <input type="radio" name="type"   value="project">
       <label for="project">project</label>
       <br>
-     
       <input type="radio" name="type"  value="task">
       <label for="task">Task</label>
     <br><br>
@@ -32,5 +31,22 @@
     @if(session()->has('succes'))
     <p>{{session('succes')}}</p>
     @endif
+    @error('type')
+    <p>{{ $message }}</p>
+    @enderror
+    
+    @error('name')
+    <p>{{ $message }}</p>
+    @enderror
+
+    @error('deploy_date')
+    <p>{{ $message }}</p>
+    @enderror
+
+    @error('submit_date')
+    <p>{{ $message }}</p>
+    @enderror
 </x-sidebar>
+
+
    

@@ -2,8 +2,10 @@
 
 <x-sidebar>
 <h1>task view</h1>
-<form action="/admin/task">
+<h2>apply the tasks for the main project</h2>
+<form action="/admin/task" method="POST">
 @csrf
+
 <label for="">deploy date </label>
 <input type="date" name="deploy_date">
 <br><br>
@@ -11,10 +13,41 @@
 <input type="date" name="submit_date">
 <br><br>
 
-<textarea name="description_task" id="description_task" cols="10" rows="5"></textarea>
+<h3>choose the project that will assign for it the tasks</h2>
+<select name="project_id" id="project_id">
+  @forelse ($projects as $project)
+      <option value="{{ $project->id }}">{{ $project->name }}</option>
+  @empty
+      <option value="">No projects available</option>
+  @endforelse
+</select>
+
+<textarea name="description" id="description_task" cols="10" rows="5"></textarea>
 
 <input type="submit">
 </form>
+@if(session()->has('succes'))
+    <p>{{session('succes')}}</p>
+    @endif
+  
+    @error('project_id')
+    <p>{{ $message }}</p>
+    @enderror
+
+    @error('deploy_date')
+    <p>{{ $message }}</p>
+    @enderror
+
+    @error('submit_date')
+    <p>{{ $message }}</p>
+    @enderror
+    @error('description')
+    <p>{{ $message }}</p>
+    @enderror
+    @error('error')
+    <p>{{ $message }}</p>
+    @enderror
+
 </x-sidebar>
 
  {{-- tiny mce link and script  --}}
