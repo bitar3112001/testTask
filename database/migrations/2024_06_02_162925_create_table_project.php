@@ -18,7 +18,6 @@ return new class extends Migration
             $table->enum('type',['task','project']);
             $table->date('deploy_date')->nullable(); // Additional timestamp column
             $table->date('submit_date')->nullable(); 
-            $table->date('submit_date')->nullable(); 
         });
     }
 
