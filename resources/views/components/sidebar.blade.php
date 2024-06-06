@@ -7,7 +7,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<title>Youbee</title>
-	
+
 	<!-- Main Styles -->
     <link rel="stylesheet" href="{{asset('assets/styles/style2.css')}}">
 	{{-- <link rel="stylesheet" href="{{asset('assets/styles/style.css')}}"> --}}
@@ -32,15 +32,20 @@
 	<!-- Dark Themes -->
 	<link rel="stylesheet" href="{{asset('assets/styles/style-black.min.css')}}">
     <style>
-        .navigation .menu a:hover{
-    color: #fca311;
-        }
-        .navigation .menu .menu-icon:hover {
+
+        /* .navigation .menu .menu-icon:hover {
             color: #fca311
-        }
+        } */
+        /* .navigation .menu li:hover ~ .navigation .menu .menu-icon{
+            color: #fca311
+        } */
+        .navigation .menu a:hover, .navigation .menu a:hover i  {
+    background-color: #ffffff;
+    color: #fca311
+}
     </style>
-	
-	
+
+
 </head>
 
 <body>
