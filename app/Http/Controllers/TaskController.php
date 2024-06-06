@@ -16,37 +16,43 @@ class TaskController extends Controller
     }
 
     public function NewTask(Request $request){
-        $params= $request->validate([
-            'project_id'=>["required"],
-            'description'=>["required","min:3"],
-            'deploy_date'=>["required", "date", "after_or_equal:today"],
-            'submit_date'=>["required", "date"]
+        $params = $request->validate([
+            'description' => ["required", "min:3"],
+            'deploy_date' => ["required", "date", "after_or_equal:today"],
+            'submit_date' => ["required", "date"]
         ]);
-
-  
-     $projectId = $params['project_id'];
-         $project = Project::find($projectId);
-     // Count the number of tasks already associated with the project
-     $taskCount = Tasks::where('project_id', $projectId)->count();
-     if ($project->type == 'project') {
-        $taskLimit = 4;
-    } else {
-        $taskLimit = 1;
-    }
-
-    // Check if the task count exceeds the limit and set the appropriate error message
-    if ($taskCount >= $taskLimit) {
-        if ($project->type == 'project') {
-            $errorMessage = 'A project can have a maximum of 4 tasks.';
-        } else {
-            $errorMessage = 'A task can only have 1 task associated with it.';
+    
+        if ($request->has('project_id')) {
+            $params['project_id'] = $request->project_id;
+        } elseif ($request->has('task_id')) {
+            $params['task_id'] = $request->task_id;
         }
-        return redirect('/admin/task')->withErrors(['error' => $errorMessage]);
-    }
-    Tasks::create($params);
-     return redirect('/admin/task')->with('succes','new task has been created');
-    }
+      
+        $projectId = $params['project_id'];
+        $project = Project::find($projectId);
+    
 
+        // Count the number of tasks already associated with the project
+        $taskCount = Tasks::where('project_id', $projectId)->count();
+        if ($project->type == 'project') {
+            $taskLimit = 4;
+        } else {
+            $taskLimit = 1;
+        }
+    
+        // Check if the task count exceeds the limit and set the appropriate error message
+        if ($taskCount >= $taskLimit) {
+            if ($project->type == 'project') {
+                $errorMessage = 'A project can have a maximum of 4 tasks.';
+            } else {
+                $errorMessage = 'A task can only have 1 task associated with it.';
+            }
+            return redirect('/admin/task')->withErrors(['error' => $errorMessage]);
+        }
+        Tasks::create($params);
+        return redirect('/admin/task')->with('success', 'New task has been created');
+    }
+    
     public    function AssignmentView(){
         return view('tasks/assignment_task');
     }

@@ -14,7 +14,7 @@
       <label for="task">Task</label>
     <br><br>
       <label for="">name your task/project</label>
-      <input type="text" name="name" >
+      <input class="form-control" type="text" name="name" >
       <br><br>
       <label for="">deploy date </label>
       <input type="date" name="deploy_date">
