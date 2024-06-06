@@ -4473,3 +4473,7 @@ textarea.form-control {
 .sweet-alert.visible .sa-icon.sa-error .sa-line {
     background: #ea4335;
 }
+
+.waves-effect ~ i{
+    color: #fca311;
+}
