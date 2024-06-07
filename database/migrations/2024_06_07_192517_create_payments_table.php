@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('status');
             $table->date('date');
             $table->timestamps();
-            $table->softDeletes(); // Add this line
+            $table->softDeletes();
 
             $table->foreign('revenue_id')->references('revenue_id')->on('revenue')->onDelete('cascade');
         });
