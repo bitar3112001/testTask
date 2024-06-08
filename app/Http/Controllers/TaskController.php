@@ -20,7 +20,7 @@ class TaskController extends Controller
             'project_id'=>["required"],
             'description' => ["required", "min:3"],
             'deploy_date' => ["required", "date", "after_or_equal:today"],
-            'submit_date' => ["required", "date"]
+            'submit_date' => ["required", "date","after_or_equal:deploy_date"]
         ]);
     
         // if ($request->has('project_id')) {
@@ -64,7 +64,7 @@ class TaskController extends Controller
             'name'=>["required","min:3"],
             'type'=> ["required", "in:task,project"],// on.y 2 possible options can be taken 
             'deploy_date'=>["required", "date", "after_or_equal:today"],
-            'submit_date'=>["required", "date" ,"after_or_equal:today"]
+            'submit_date'=>["required", "date" ,"after_or_equal:deploy_date"]
         ]);
 
      Project::create($params);
