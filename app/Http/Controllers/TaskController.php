@@ -17,16 +17,17 @@ class TaskController extends Controller
 
     public function NewTask(Request $request){
         $params = $request->validate([
+            'project_id'=>["required"],
             'description' => ["required", "min:3"],
             'deploy_date' => ["required", "date", "after_or_equal:today"],
             'submit_date' => ["required", "date"]
         ]);
     
-        if ($request->has('project_id')) {
-            $params['project_id'] = $request->project_id;
-        } elseif ($request->has('task_id')) {
-            $params['task_id'] = $request->task_id;
-        }
+        // if ($request->has('project_id')) {
+        //     $params['project_id'] = $request->project_id;
+        // } elseif ($request->has('task_id')) {
+        //     $params['task_id'] = $request->task_id;
+        // }
       
         $projectId = $params['project_id'];
         $project = Project::find($projectId);
