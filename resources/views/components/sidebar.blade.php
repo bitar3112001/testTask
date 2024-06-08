@@ -39,10 +39,7 @@
         /* .navigation .menu li:hover ~ .navigation .menu .menu-icon{
             color: #fca311
         } */
-        .navigation .menu a:hover, .navigation .menu a:hover i  {
-    background-color: #ffffff;
-    color: #fca311
-}
+
     </style>
 
 

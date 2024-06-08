@@ -1404,7 +1404,7 @@ h4 strong {
 	}
 	.menu-active .navigation .menu > li:hover > a {
 		width: 260px;
-		background: #304ffe;
+		background: #000000;
 		color: #ffffff;
 		padding-left: 90px;
 	}
