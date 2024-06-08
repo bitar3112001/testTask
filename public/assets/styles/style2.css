@@ -4474,5 +4474,9 @@ textarea.form-control {
     background: #ea4335;
 }
 
+.navigation .menu a:hover, .navigation .menu a:hover i  {
+    background-color: #aeb7c2;
+    color: #fca311
+}
 
 
