@@ -30,5 +30,10 @@ Route::get('/customer/addCustomer',function(){
 
  Route::get('/admin/task',[TaskController::class,'TaskView']);
  Route::post('/admin/task',[TaskController::class,'NewTask']);
+//  Route::put('/admin/assignment/end/{id}', [TaskController::class, 'endproject']);
+//Route::get('/admin/assignment',[TaskController::class,'AssignmentView']);
+//Route::post('/admin/assignment',[TaskController::class,'NewProject']);
 Route::get('/admin/assignment',[TaskController::class,'AssignmentView']);
-Route::post('/admin/assignment',[TaskController::class,'NewProject']);
+Route::post('/admin/assignment',[TaskController::class,'NewAssignment']);
+Route::put('/admin/assignment/end/{id}', [TaskController::class, 'EndAssignment']);
+Route::put('/admin/assignment/{id}', [TaskController::class, 'AssignmentEdit']);
