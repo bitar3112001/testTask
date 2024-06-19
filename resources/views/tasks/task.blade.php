@@ -16,10 +16,10 @@
     
         <label for="type">Select Task or Project</label>
         <br>
-        <input type="radio" name="type" value="project" onclick="toggleSelect('project')">
+        <input type="radio" id="project" name="type" value="project" onclick="toggleSelect('project')">
         <label for="project">Project</label>
         <br>
-        <input type="radio" name="type" value="task" onclick="toggleSelect('task')">
+        <input type="radio" id="task" name="type" value="task" onclick="toggleSelect('task')">
         <label for="task">Task</label>
         <br><br>
     
@@ -42,7 +42,7 @@
         </select>
         <br><br>
     
-        <textarea name="description" id="description_task" cols="10" rows="5"></textarea>
+        <textarea name="description" id="description_task" cols="10" rows="5">{{ old('description') }}</textarea>
     
         <input type="submit">
     </form>
