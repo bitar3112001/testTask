@@ -4,8 +4,11 @@
     <h2>Apply the tasks for the main project</h2>
     <form action="/admin/task" method="POST">
         @csrf
-    
+    <label for="name"> Task  Name</label>
+    <input type="text" name="name">
+    <br><br>
         <label for="deploy_date">Deploy date</label>
+
         <input type="date" name="deploy_date">
         <br><br>
         <label for="submit_date">Submit date</label>

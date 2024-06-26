@@ -19,6 +19,7 @@ class TaskController extends Controller
     public function NewTask(Request $request)
     {
         $params = $request->validate([
+            'name'=>['required','min:3'],
             'project_id' => ["required"],
             'description' => ["required", "min:3"],
             'deploy_date' => ["required", "date", "after_or_equal:today"],
@@ -103,6 +104,11 @@ class TaskController extends Controller
             $project->save();
             return redirect('/admin/assignment')->with('success', 'Task/project ended successfully');
         }
+    }
+
+    public function Manage_Task_View(){
+        $tasks=Tasks::all();
+        return view('tasks/task_managment',compact('tasks'));
     }
 
 }
