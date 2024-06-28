@@ -11,7 +11,7 @@
         padding: 20px;
     }
 
-    table {
+    .assignment_table {
         width: 100%;
         border-collapse: collapse;
         margin: 20px 0;
@@ -19,7 +19,7 @@
         text-align: left;
     }
 
-    th,
+  .assignment_table  th,
     td {
         border: 1px solid #dee2e6;
         padding: 10px;
@@ -113,7 +113,7 @@
 
 
     <h1>Test Edit Task</h1>
-    <table class="table table-striped table-bordered" id="datatable">
+    <table class="table table-striped table-bordered  assignment_table" id="datatable">
         <thead class="thead-dark">
             <tr>
                 <th>id</th>

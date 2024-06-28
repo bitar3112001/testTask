@@ -1,0 +1,142 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #121212; /* Dark background color */
+    color: #ffffff; /* Light text color for contrast */
+    font-family: Arial, sans-serif;
+}
+
+/* nav part */
+.nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid gray;
+    background-color: #1e1e1e; 
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+.nav-ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 30%;
+}
+.nav-ul li {
+    list-style: none;
+    color: gray; 
+    transition: background-color 0.3s ease; 
+}
+.nav-ul li:hover {
+    background-color: #333333; 
+}
+.logo {
+    font-size: 24px;
+    color: #ffffff; 
+}
+
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 15%;
+    border-right: 1px solid gray;
+    position: fixed;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: #1e1e1e; 
+}
+.sidebar .project-name {
+    font-size: 17px;
+    color: #ffffff; 
+}
+.sidebar .project-type {
+    font-size: 15px;
+    color: gray; 
+}
+.planning {
+    color: #ffffff; 
+}
+.sidebar-ul, .bottom-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.sidebar-ul li, .bottom-sidebar li {
+    list-style: none;
+    width: 100%;
+    padding: 10px ; 
+    color: gray; 
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease; 
+}
+.sidebar-ul li:hover, .bottom-sidebar li:hover {
+    background-color: #333333; 
+}
+.sidebar-ul li i, .bottom-sidebar li i {
+    margin-right: 10px; 
+}
+.catigory {
+    margin-top: 20px; 
+    color: #ffffff; 
+}
+.code {
+    color: gray; 
+}
+hr {
+    border: 1px solid gray;
+    width: 100%;
+}
+
+.sidebar-bareir{
+    width: 17%;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.input-task,.column-input{
+    display: none;
+}
+.managment{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    column-gap: 50px;
+}
+
+.task-create{
+    border: 1px solid white ;
+   
+}
+.task_btn{
+    display: none;
+}
+.column-input,.column_btn{
+    display: none;
+}
+.create-column{
+    border: 1px solid white;
+
+}
+.created_task {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+       min-height: 20px;  /* Ensuring the div has a height */
+    width: 100%; /* Adjust width as needed */
+ /* Set a minimum height */
+  
+}

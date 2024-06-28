@@ -28,12 +28,13 @@ Route::get('/customer/addCustomer',function(){
     return view('customer.addCustomer');
 })->name('addCustomer');
 
- Route::get('/admin/task',[TaskController::class,'TaskView']);
- Route::post('/admin/task',[TaskController::class,'NewTask']);
-//  Route::put('/admin/assignment/end/{id}', [TaskController::class, 'endproject']);
-//Route::get('/admin/assignment',[TaskController::class,'AssignmentView']);
-//Route::post('/admin/assignment',[TaskController::class,'NewProject']);
+Route::get('/admin/task',[TaskController::class,'TaskView']);
+Route::post('/admin/task',[TaskController::class,'NewTask']);
 Route::get('/admin/assignment',[TaskController::class,'AssignmentView']);
 Route::post('/admin/assignment',[TaskController::class,'NewAssignment']);
 Route::put('/admin/assignment/end/{id}', [TaskController::class, 'EndAssignment']);
 Route::put('/admin/assignment/{id}', [TaskController::class, 'AssignmentEdit']);
+Route::get('/admin/task/managment',[TaskController::class,'Manage_Task_View']);
+//  Route::put('/admin/assignment/end/{id}', [TaskController::class, 'endproject']);
+//Route::get('/admin/assignment',[TaskController::class,'AssignmentView']);
+//Route::post('/admin/assignment',[TaskController::class,'NewProject']);
