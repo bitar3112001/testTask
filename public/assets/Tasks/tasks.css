@@ -110,33 +110,87 @@ hr {
 .input-task,.column-input{
     display: none;
 }
-.managment{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    column-gap: 50px;
-}
+
 
 .task-create{
     border: 1px solid white ;
    
 }
+
+.taskdiv{
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    background-color: gray;
+}
 .task_btn{
     display: none;
 }
-.column-input,.column_btn{
+.column-input,.column_btn{ 
     display: none;
-}
-.create-column{
-    border: 1px solid white;
-
 }
 .created_task {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
        min-height: 20px;  /* Ensuring the div has a height */
     width: 100%; /* Adjust width as needed */
+    background-color: red;
  /* Set a minimum height */
   
 }
+.managment{
+    display: flex;
+    flex-direction: row;
+   column-gap: 40px;
+    width: 80%;
+    justify-content: flex-start;
+}
+.create-column{
+    border: 1px solid white;
+    align-items: center;
+    flex-direction: column;
+    height: 100px;
+    margin-top: 60px;
+}
+.added_columns{
+    display: flex;
+    column-gap: 30px;
+    flex-direction: row;
+}
+
+.edit_delete{
+    position: fixed;
+    z-index: 1;
+    background-color: gray;
+    width: 500px;
+    height: 400px;
+    top: 100px;
+    right: 0px;
+}
+
+.open{
+    animation: slideLeft 0.5s forwards;
+}
+  .close {
+        animation: slideRight 0.5s forwards;
+      }
+
+
+@keyframes slideLeft {
+    0% {
+      right: -300px;
+    }
+    100% {
+      right: 0px;
+    }
+  }
+  @keyframes slideRight {
+    0% {
+      right: 0px;
+    }
+    100% {
+      right: -500px;
+    }
+  }

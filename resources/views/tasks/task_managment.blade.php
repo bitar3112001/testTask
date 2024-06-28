@@ -46,25 +46,31 @@
             </div>
         </div>
         <div id="managment" class="managment">
-            <div class="column">
-               <h1> to do</h1>
-                <input type="text" class="input-task" id="input-task">
-                <button class="task_btn" id="task_btn" onclick="CreateTask()">create</button>
-                <div id="created_task"  class="created_task"></div>
-                <div id="task-create"   class="task-create">
-                    <h3>+ create a task</h3>
+            <div id="added_columns" class="added_columns">
+                <div class="column">
+                    <h1>to do</h1>
+                    <input type="text" class="input-task" id="input-task">
+                    <button class="task_btn" id="task_btn" onclick="CreateTask()">create</button>
+                    <div id="created_task" class="created_task"></div>
+                    <div id="task-create" class="task-create">
+                        <h3>+ create a task</h3>
+                    </div>
                 </div>
             </div>
-            <div id="added_columns" class="added_columns">
-            </div>
+
             <div class="create-column" id="create-column">
                 <input type="text" class="column-input" id="column-input">
                 <button class="column_btn" id="column_btn" onclick="createcolumn1()">create</button>
-                <h3>+ create column</h3>
+                <h3 >+ create column</h3>
             </div>
         </div>
     </div> <!-- end container -->
 
+    <div id="edit_delete" class="edit_delete close">
+        <div class="task_name"></div>
+        <div id="toggle">x</div>
+        <div class="edit"></div>
+    </div>
     <script src="{{asset('assets/Tasks/tasks.js')}}"></script>
 </body>
 
