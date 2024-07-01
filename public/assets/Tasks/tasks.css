@@ -1,8 +1,10 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: #121212; /* Dark background color */
-    color: #ffffff; /* Light text color for contrast */
+    background-color: #121212;
+    /* Dark background color */
+    color: #ffffff;
+    /* Light text color for contrast */
     font-family: Arial, sans-serif;
 }
 
@@ -14,10 +16,11 @@ body {
     justify-content: space-between;
     width: 100%;
     border-bottom: 1px solid gray;
-    background-color: #1e1e1e; 
-  padding-top: 20px;
-  padding-bottom: 10px;
+    background-color: #1e1e1e;
+    padding-top: 20px;
+    padding-bottom: 10px;
 }
+
 .nav-ul {
     display: flex;
     flex-direction: row;
@@ -25,17 +28,20 @@ body {
     justify-content: space-evenly;
     width: 30%;
 }
+
 .nav-ul li {
     list-style: none;
-    color: gray; 
-    transition: background-color 0.3s ease; 
+    color: gray;
+    transition: background-color 0.3s ease;
 }
+
 .nav-ul li:hover {
-    background-color: #333333; 
+    background-color: #333333;
 }
+
 .logo {
     font-size: 24px;
-    color: #ffffff; 
+    color: #ffffff;
 }
 
 
@@ -49,20 +55,25 @@ body {
     height: 100vh;
     box-sizing: border-box;
     padding: 20px;
-    background-color: #1e1e1e; 
+    background-color: #1e1e1e;
 }
+
 .sidebar .project-name {
     font-size: 17px;
-    color: #ffffff; 
+    color: #ffffff;
 }
+
 .sidebar .project-type {
     font-size: 15px;
-    color: gray; 
+    color: gray;
 }
+
 .planning {
-    color: #ffffff; 
+    color: #ffffff;
 }
-.sidebar-ul, .bottom-sidebar {
+
+.sidebar-ul,
+.bottom-sidebar {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -71,96 +82,152 @@ body {
     margin: 0;
     box-sizing: border-box;
 }
-.sidebar-ul li, .bottom-sidebar li {
+
+.sidebar-ul li,
+.bottom-sidebar li {
     list-style: none;
     width: 100%;
-    padding: 10px ; 
-    color: gray; 
+    padding: 10px;
+    color: gray;
     display: flex;
     align-items: center;
-    transition: background-color 0.3s ease; 
+    transition: background-color 0.3s ease;
 }
-.sidebar-ul li:hover, .bottom-sidebar li:hover {
-    background-color: #333333; 
+
+.sidebar-ul li:hover,
+.bottom-sidebar li:hover {
+    background-color: #333333;
 }
-.sidebar-ul li i, .bottom-sidebar li i {
-    margin-right: 10px; 
+
+.sidebar-ul li i,
+.bottom-sidebar li i {
+    margin-right: 10px;
 }
+
 .catigory {
-    margin-top: 20px; 
-    color: #ffffff; 
+    margin-top: 20px;
+    color: #ffffff;
 }
+
 .code {
-    color: gray; 
+    color: gray;
 }
+
 hr {
     border: 1px solid gray;
     width: 100%;
 }
 
-.sidebar-bareir{
+.sidebar-bareir {
     width: 17%;
 }
-.container{
+
+.container {
     display: flex;
     flex-direction: row;
     width: 100%;
 }
 
-.input-task,.column-input{
+.input-task,
+.column-input {
     display: none;
+    width: 130px;
+    height: 25px;
+    border: none;
+    background-color: antiquewhite;
+    border-radius: 5px;
 }
 
-
-.task-create{
-    border: 1px solid white ;
-   
+.column {
+    border: 1px dashed #aaa;
 }
 
-.taskdiv{
+.task-create {
+    border-radius: 10px;
+    width: 100%;
+    color: #aaa;
+}
+
+.taskdiv {
     display: flex;
-    width: 80%;
+    width: 100%;
     justify-content: center;
     background-color: gray;
+    margin-bottom: 1%;
 }
-.task_btn{
+
+.column_btn {
+    width: 50px;
+    height: 25px;
+    background-color: #aaa;
+    color: #121212;
+    border-radius: 5px;
+    border: none;
+}
+
+.task_btn {
+    display: none;
+    width: 50px;
+    height: 25px;
+    background-color: #aaa;
+    color: #121212;
+    border-radius: 5px;
+    border: none;
+}
+
+.column-input,
+.column_btn {
     display: none;
 }
-.column-input,.column_btn{ 
-    display: none;
-}
+
 .created_task {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-       min-height: 20px;  /* Ensuring the div has a height */
-    width: 100%; /* Adjust width as needed */
-    background-color: red;
- /* Set a minimum height */
-  
+    min-height: 20px;
+
+    /* Ensuring the div has a height */
+    width: 188px;
+    /* Adjust width as needed */
+    border: 1px solid teal;
+    /* Set a minimum height */
+    cursor: pointer;
+
 }
-.managment{
+
+.managment {
     display: flex;
     flex-direction: row;
-   column-gap: 40px;
+    column-gap: 40px;
     width: 80%;
     justify-content: flex-start;
 }
-.create-column{
-    border: 1px solid white;
+
+.create-column {
     align-items: center;
     flex-direction: column;
     height: 100px;
     margin-top: 60px;
+    color: #aaa;
 }
-.added_columns{
+
+.added_columns {
     display: flex;
     column-gap: 30px;
     flex-direction: row;
+
 }
 
-.edit_delete{
+#toggle {
+    font-weight: bolder;
+    margin-left: 1%;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+.edit_delete {
     position: fixed;
     z-index: 1;
     background-color: gray;
@@ -168,29 +235,50 @@ hr {
     height: 400px;
     top: 100px;
     right: 0px;
+
 }
 
-.open{
+.edit_delete .edit {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit_delete .edit .taskdiv {
+    height: 45px;
+    border: 1px solid rgb(133, 127, 127);
+    width: 100%;
+    color: #121212;
+    background-color: #ffffff;
+}
+
+.open {
     animation: slideLeft 0.5s forwards;
 }
-  .close {
-        animation: slideRight 0.5s forwards;
-      }
+
+.close {
+    animation: slideRight 0.5s forwards;
+}
 
 
 @keyframes slideLeft {
     0% {
-      right: -300px;
+        right: -100%;
     }
+
     100% {
-      right: 0px;
+        right: 2px;
     }
-  }
-  @keyframes slideRight {
+}
+
+@keyframes slideRight {
     0% {
-      right: 0px;
+        right: 2px;
     }
+
     100% {
-      right: -500px;
+        right: -100%;
     }
-  }
+}
