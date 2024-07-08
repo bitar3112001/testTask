@@ -1,284 +1,299 @@
-body {
-    padding: 0;
-    margin: 0;
-    background-color: #121212;
-    /* Dark background color */
-    color: #ffffff;
-    /* Light text color for contrast */
-    font-family: Arial, sans-serif;
+.Project_name {
+    margin-bottom: 40px;
 }
 
-/* nav part */
-.nav {
-    display: flex;
-    flex-direction: row;
+.task {
+    height: 100px;
+}
+
+.button-30 {
     align-items: center;
+    appearance: none;
+    background-color: #d7d7e6;
+    border-radius: 1px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #36395A;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono", monospace;
+    height: 40px;
+    width: 40px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding: 0 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s, transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+    font-size: 18px;
+}
+
+.button-30:focus {
+    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-1px);
+}
+
+.button-30:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+}
+
+.hidden {
+    display: none;
+}
+
+.task {
+    display: flex;
+    flex-direction: column;
+}
+
+.allelements {
+    display: flex;
     justify-content: space-between;
     width: 100%;
-    border-bottom: 1px solid gray;
-    background-color: #1e1e1e;
-    padding-top: 20px;
-    padding-bottom: 10px;
+    font-size: 20px;
 }
 
-.nav-ul {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 30%;
-}
-
-.nav-ul li {
-    list-style: none;
-    color: gray;
-    transition: background-color 0.3s ease;
-}
-
-.nav-ul li:hover {
-    background-color: #333333;
-}
-
-.logo {
-    font-size: 24px;
-    color: #ffffff;
-}
-
-
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 15%;
-    border-right: 1px solid gray;
-    position: fixed;
-    height: 100vh;
-    box-sizing: border-box;
-    padding: 20px;
-    background-color: #1e1e1e;
-}
-
-.sidebar .project-name {
-    font-size: 17px;
-    color: #ffffff;
-}
-
-.sidebar .project-type {
-    font-size: 15px;
-    color: gray;
-}
-
-.planning {
-    color: #ffffff;
-}
-
-.sidebar-ul,
-.bottom-sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-.sidebar-ul li,
-.bottom-sidebar li {
-    list-style: none;
-    width: 100%;
-    padding: 10px;
-    color: gray;
-    display: flex;
-    align-items: center;
-    transition: background-color 0.3s ease;
-}
-
-.sidebar-ul li:hover,
-.bottom-sidebar li:hover {
-    background-color: #333333;
-}
-
-.sidebar-ul li i,
-.bottom-sidebar li i {
+.threedots {
+    position: relative;
+    cursor: pointer;
     margin-right: 10px;
 }
 
-.catigory {
-    margin-top: 20px;
+.threedots:hover::after {
+    content: "Delete";
+    position: absolute;
+    top: 60%;
+    left: calc(100% + 40px);
+    /* Adjusted position to the right */
+    transform: translateX(-50%);
+    background-color: #fff;
+    color: #ff0000;
+    font-size: 12px;
+    /* Adjusted font size */
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+/* Custom confirmation dialog */
+.confirmation-dialog {
+    position: fixed;
+    top: 20%;
+    /* Adjusted to be 30% from the top */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1000;
+    display: none;
+}
+
+.created_tasks {
+    min-height: 30px;
+    min-width: 50px;
+
+}
+
+.confirmation-dialog.show {
+    display: block;
+}
+
+.confirmation-dialog h2 {
+    color: #ff0000;
+    margin-bottom: 10px;
+}
+
+.confirmation-dialog button {
+    background-color: #ff0000;
     color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
 }
 
-.code {
+.confirmation-dialog button:hover {
+    background-color: #cc0000;
+}
+
+.confirmation-dialog button.cancel {
+    background-color: #ccc;
+    margin-left: 10px;
+}
+
+.confirmation-dialog button.cancel:hover {
+    background-color: #999;
+}
+
+/* Overlay styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent black */
+    z-index: 999;
+    /* Higher than your content, lower than confirmation dialog */
+    display: none;
+    /* Initially hidden */
+}
+
+.employeeicon {
+    display: flex;
+    justify-content: flex-end;
+    height: 50px;
+    /* You can adjust this height */
+    margin-left: 20px;
+    font-size: 24px;
+    /* Increase the font size as desired */
+    margin-top: 10px;
+}
+
+.bi-person-circle:hover::after {
+    content: "Unassigned";
+    position: absolute;
+    top: calc(45% + 4px);
+    /* Adjusted top position */
+    left: calc(90% + 8px);
+    /* Adjusted left position */
+    background-color: #fff;
     color: gray;
+    padding: 2px 6px;
+    /* Adjusted padding */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    /* Adjusted font size */
+    white-space: nowrap;
+    /* Ensures it stays on one line */
+    z-index: 999;
 }
 
-hr {
-    border: 1px solid gray;
-    width: 100%;
-}
-
-.sidebar-bareir {
-    width: 17%;
-}
-
-.container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-
-.input-task,
-.column-input {
-    display: none;
-    width: 130px;
-    height: 25px;
-    border: none;
-    background-color: antiquewhite;
-    border-radius: 5px;
-}
-
-.column {
-    border: 1px dashed #aaa;
-}
-
-.task-create {
-    border-radius: 10px;
-    width: 100%;
-    color: #aaa;
-}
-
-.taskdiv {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    background-color: gray;
-    margin-bottom: 1%;
-}
-
-.column_btn {
-    width: 50px;
-    height: 25px;
-    background-color: #aaa;
-    color: #121212;
-    border-radius: 5px;
-    border: none;
-}
-
-.task_btn {
-    display: none;
-    width: 50px;
-    height: 25px;
-    background-color: #aaa;
-    color: #121212;
-    border-radius: 5px;
-    border: none;
-}
-
-.column-input,
-.column_btn {
-    display: none;
-}
-
-.created_task {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 20px;
-
-    /* Ensuring the div has a height */
-    width: 188px;
-    /* Adjust width as needed */
-    border: 1px solid teal;
-    /* Set a minimum height */
-    cursor: pointer;
-
-}
-
-.managment {
-    display: flex;
-    flex-direction: row;
-    column-gap: 40px;
-    width: 80%;
-    justify-content: flex-start;
-}
-
-.create-column {
-    align-items: center;
-    flex-direction: column;
-    height: 100px;
-    margin-top: 60px;
-    color: #aaa;
-}
-
-.added_columns {
-    display: flex;
-    column-gap: 30px;
-    flex-direction: row;
-
-}
-
-#toggle {
-    font-weight: bolder;
-    margin-left: 1%;
-    font-size: 2rem;
-    color: white;
-    cursor: pointer;
-}
-
-.edit_delete {
+.edit_bar {
     position: fixed;
     z-index: 1;
-    background-color: gray;
-    width: 500px;
-    height: 400px;
-    top: 100px;
+    background-color: #f5f7fa;
+    top: 50px;
     right: 0px;
-
-}
-
-.edit_delete .edit {
-    width: 100%;
     display: flex;
     flex-direction: column;
+    row-gap: 20px;
+    overflow-y: scroll;
+    width: 60%;
+    height: 85vh;
+    border: 1px solid grey;
+}
+
+.save_description,
+.cancel_description,
+.save_comment,
+.cancel_comment,
+.button {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: gainsboro;
+    font-weight: bolder;
+    color: black;
+    margin-top: 10px;
+}
+
+
+.save_description:hover,
+.cancel_description:hover,
+.save_comment:hover,
+.cancel_comment:hover,
+.button:hover {
+    background-color: rgb(161, 160, 160);
+    border: none;
+}
+
+.close-btn {
+    width: 50px;
+    /* Diameter of the button */
+    height: 50px;
+    /* Diameter of the button */
+    border-radius: 200%;
+    /* Make it circular */
+    background-color: white;
+    /* White background */
+    border: 10px solid gold;
+    /* Golden border */
+    display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Optional: Adds a subtle shadow */
+    transition: background-color 0.3s, box-shadow 0.3s;
+    /* Smooth transition */
 }
 
-.edit_delete .edit .taskdiv {
-    height: 45px;
-    border: 1px solid rgb(133, 127, 127);
-    width: 100%;
-    color: #121212;
-    background-color: #ffffff;
+.employee_description,
+.save_description,
+.cancel_description,
+.tiny_comment,
+.save_comment,
+.cancel_comment {
+    display: none;
 }
 
-.open {
-    animation: slideLeft 0.5s forwards;
+.task_name {
+    margin-right: 10px;
 }
 
-.close {
-    animation: slideRight 0.5s forwards;
+.close-btn:hover {
+    background-color: #fca311;
+    /* Change background to gold on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Enhance shadow on hover */
 }
 
-
-@keyframes slideLeft {
-    0% {
-        right: -100%;
-    }
-
-    100% {
-        right: 2px;
-    }
+/* Style for the 'X' icon */
+.close-btn::before,
+.close-btn::after {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 2px;
+    background-color: black;
+    /* Black 'X' icon */
 }
 
-@keyframes slideRight {
-    0% {
-        right: 2px;
-    }
+.close-btn::before {
+    transform: rotate(45deg);
+}
 
-    100% {
-        right: -100%;
-    }
+.close-btn::after {
+    transform: rotate(-45deg);
+}
+
+.closebar {
+    display: none;
+}
+
+.openbar {
+    display: inline;
 }
