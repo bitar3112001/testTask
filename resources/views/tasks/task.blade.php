@@ -1,19 +1,19 @@
 <x-sidebar>
-   
+
     <h1>Task View</h1>
     <h2>Apply the tasks for the main project</h2>
     <form action="/admin/task" method="POST">
         @csrf
-    
+
         <label for="deploy_date">Deploy date</label>
         <input type="date" name="deploy_date">
         <br><br>
         <label for="submit_date">Submit date</label>
         <input type="date" name="submit_date">
         <br><br>
-    
+
         <h3>Choose the project/task that will assign for it the tasks</h3>
-    
+
         <label for="type">Select Task or Project</label>
         <br>
         <input type="radio" name="type" value="project" onclick="toggleSelect('project')">
@@ -22,10 +22,10 @@
         <input type="radio" name="type" value="task" onclick="toggleSelect('task')">
         <label for="task">Task</label>
         <br><br>
-    
+
         <select id="project_select" style="display:none;">
             <option value="">Select a project</option>
-     
+
             @forelse ($projects as $project)
                 <option value="{{ $project->id }}">{{ $project->name }}</option>
             @empty
@@ -41,42 +41,42 @@
             @endforelse
         </select>
         <br><br>
-    
+
         <textarea name="description" id="description_task" cols="10" rows="5"></textarea>
-    
+
         <input type="submit">
     </form>
-    
+
     @if(session()->has('success'))
         <p>{{ session('success') }}</p>
     @endif
-    
+
     @error('project_id')
         <p>{{ $message }}</p>
     @enderror
-    
+
     @error('deploy_date')
         <p>{{ $message }}</p>
     @enderror
-    
+
     @error('submit_date')
         <p>{{ $message }}</p>
     @enderror
-    
+
     @error('description')
         <p>{{ $message }}</p>
     @enderror
-    
+
     @error('error')
         <p>{{ $message }}</p>
     @enderror
-  
+
     </x-sidebar>
-  
+
     <script src="https://cdn.tiny.cloud/1/hjoktz3fubxkp1hlp3zs4289mjci32ivz3stcq1hv51sg0nd/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
-        tinymce.init({ 
-            selector: '#description_task', 
+        tinymce.init({
+            selector: '#description_task',
             plugins: 'code table lists image',
             toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | image',
             image_title: true,
@@ -107,7 +107,7 @@
         function toggleSelect(type) {
             var projectSelect = document.getElementById('project_select');
             var taskSelect = document.getElementById('task_select');
-  
+
             if (type === 'project') {
                 projectSelect.style.display = 'block';
                 projectSelect.name = 'project_id';
@@ -121,4 +121,3 @@
             }
         }
     </script>
-  
