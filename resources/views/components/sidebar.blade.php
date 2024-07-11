@@ -1,52 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<title>Youbee</title>
-
-	<!-- Main Styles -->
-    <link rel="stylesheet" href="{{asset('assets/styles/style2.css')}}">
-	{{-- <link rel="stylesheet" href="{{asset('assets/styles/style.css')}}"> --}}
-
-	<!-- Themify Icon -->
-	<link rel="stylesheet" href="{{asset('assets/fonts/themify-icons/themify-icons.css')}}">
-
-	<!-- mCustomScrollbar -->
-	<link rel="stylesheet" href="{{asset('assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css')}}">
-
-	<!-- Waves Effect -->
-	<link rel="stylesheet" href="{{asset('assets/plugin/waves/waves.min.css')}}">
-
-	<!-- Sweet Alert -->
-	<link rel="stylesheet" href="{{asset('assets/plugin/sweet-alert/sweetalert.css')}}">
-
-	<!-- TinyMCE -->
-	<link rel="stylesheet" href="{{asset('assets/plugin/tinymce/skins/lightgray/skin.min.css')}}">
-	<!-- Must include this script FIRST -->
-	<script src="{{asset('assets/plugin/tinymce/tinymce.min.js')}}"></script>
-
-	<!-- Dark Themes -->
-	<link rel="stylesheet" href="{{asset('assets/styles/style-black.min.css')}}">
-    <style>
-
-        /* .navigation .menu .menu-icon:hover {
-            color: #fca311
-        } */
-        /* .navigation .menu li:hover ~ .navigation .menu .menu-icon{
-            color: #fca311
-        } */
-        .navigation .menu a:hover, .navigation .menu a:hover i  {
-    background-color: #ffffff;
-    color: #fca311
-}
-    </style>
-
-
-</head>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>Youbee</title>
+	
+		<!-- Main Styles -->
+		<link rel="stylesheet" href="{{ asset('assets/styles/style2.css') }}">
+		<!-- Themify Icon -->
+		<link rel="stylesheet" href="{{ asset('assets/fonts/themify-icons/themify-icons.css') }}">
+		<!-- mCustomScrollbar -->
+		<link rel="stylesheet" href="{{ asset('assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css') }}">
+		<!-- Waves Effect -->
+		<link rel="stylesheet" href="{{ asset('assets/plugin/waves/waves.min.css') }}">
+		<!-- Sweet Alert -->
+		<link rel="stylesheet" href="{{ asset('assets/plugin/sweet-alert/sweetalert.css') }}">
+		<!-- TinyMCE -->
+		<link rel="stylesheet" href="{{ asset('assets/plugin/tinymce/skins/lightgray/skin.min.css') }}">
+		<script src="{{ asset('assets/plugin/tinymce/tinymce.min.js') }}"></script>
+		<!-- Dark Themes -->
+		<link rel="stylesheet" href="{{ asset('assets/styles/style-black.min.css') }}">
+		<style>
+			.navigation .menu a:hover, .navigation .menu a:hover i {
+				background-color: #ffffff;
+				color: #fca311;
+			}
+			.accLink:visited{
+				color: #212121;
+			}
+		</style>
+	</head>
 
 <body>
 <div class="main-menu">
@@ -94,6 +80,36 @@
 					<a class="waves-effect" href="widgets.html"><i class="menu-icon ti-layers-alt"></i><span>Widgets</span><span class="notice notice-yellow">6</span></a>
 				</li>
 			</ul>
+
+
+			{{-- Accounting Start --}}
+
+
+			<h5 class="title">
+				<a class="accLink" style="hight: 100%; width: 100%; display:flex;flex-direction: row; justify-content: space-between;" data-bs-toggle="collapse" href="#accountingMenu" role="button" aria-expanded="false" aria-controls="accountingMenu" style="color:#212121;">
+					<span>Accounting</span><span class="menu-arrow fa fa-angle-down"></span>
+				</a>
+			</h5>
+			<!-- /.title -->
+			<div class="collapse" id="accountingMenu">
+				<ul class="menu js__content">
+					<li>
+						<a class="waves-effect" href="{{ route('payments.create') }}"><i class="menu-icon fa fa-credit-card"></i><span>Payments</span></a>
+					</li>
+					<li>
+						<a class="waves-effect" href="{{ route('payments.create') }}"><i class="menu-icon fa fa-chart-line"></i><span>Revenue</span></a>
+					</li>
+					<li>
+						<a class="waves-effect" href="{{ route('payments.create') }}"><i class="menu-icon fa fa-money-bill-wave"></i><span>Expenses</span></a>
+					</li>
+				</ul>
+			</div>
+			
+
+
+			{{-- Accounting end --}}
+
+
 			<!-- /.menu js__accordion -->
 			<h5 class="title">User Interface</h5>
 			<!-- /.title -->
@@ -289,5 +305,12 @@
 	<script src="{{asset('assets/scripts/tinymce.init.min.js')}}"></script>
 
 	<script src="{{asset('assets/scripts/main.min.js')}}"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </body>
 </html>
