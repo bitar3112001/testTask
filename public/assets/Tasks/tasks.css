@@ -200,10 +200,16 @@
     flex-direction: column;
     row-gap: 20px;
     overflow-y: scroll;
+    white-space: nowrap;
     width: 60%;
     height: 85vh;
     border: 1px solid grey;
+    padding: 20px;
 }
+
+
+
+
 
 .save_description,
 .cancel_description,
@@ -249,6 +255,7 @@
     /* Optional: Adds a subtle shadow */
     transition: background-color 0.3s, box-shadow 0.3s;
     /* Smooth transition */
+    flex-shrink: 0;
 }
 
 .employee_description,
@@ -297,3 +304,18 @@
 .openbar {
     display: inline;
 }
+
+
+.borad-head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+   
+}
+.board-dots{
+    font-size: 20px;
+}
+
+.description-editor { display: none; }
+.description-data { cursor: pointer; }
