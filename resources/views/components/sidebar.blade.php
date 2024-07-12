@@ -7,7 +7,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<title>Youbee</title>
-	
+
 		<!-- Main Styles -->
 		<link rel="stylesheet" href="{{ asset('assets/styles/style2.css') }}">
 		<!-- Themify Icon -->
@@ -35,15 +35,15 @@
 	</head>
 
 <body>
-<div class="main-menu">
-	<header class="header">
-		<a href="index.html" class="logo">
-            {{-- <i class="ico ti-rocket"></i> --}}
-            YouBee.ai</a>
-		<button type="button" class="button-close fa fa-times js__menu_close"></button>
-	</header>
-	<!-- /.header -->
-	<div class="content">
+    <div class="main-menu">
+        <header class="header">
+            <a href="index.html" class="logo">
+                {{-- <i class="ico ti-rocket"></i> --}}
+                YouBee.ai</a>
+            <button type="button" class="button-close fa fa-times js__menu_close"></button>
+        </header>
+        <!-- /.header -->
+        <div class="content">
 
 		<div class="navigation">
 			<h5 class="title">Navigation</h5>
@@ -104,7 +104,7 @@
 					</li>
 				</ul>
 			</div>
-			
+
 
 
 			{{-- Accounting end --}}
@@ -127,182 +127,102 @@
 				</li>
 
 
-				<li>
-					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-layout-accordion-merged"></i><span>Tables</span><span class="menu-arrow fa fa-angle-down"></span></a>
-					<ul class="sub-menu js__content">
-						<li><a href="tables-basic.html">Basic Tables</a></li>
-						<li><a href="tables-datatable.html">Data Tables</a></li>
-						<li><a href="tables-responsive.html">Responsive Tables</a></li>
-						<li><a href="tables-editable.html">Editable Tables</a></li>
-					</ul>
-					<!-- /.sub-menu js__content -->
-				</li>
-			</ul>
-			<!-- /.menu js__accordion -->
-			<h5 class="title">Additions</h5>
-			<!-- /.title -->
-			<ul class="menu js__accordion">
-				<li>
-					<a class="waves-effect" href="profile.html"><i class="menu-icon ti-user"></i><span>Profile</span></a>
-				</li>
+                    <li>
+                        <a class="waves-effect parent-item js__control" href="#"><i
+                                class="menu-icon ti-layout-accordion-merged"></i><span>Tables</span><span
+                                class="menu-arrow fa fa-angle-down"></span></a>
+                        <ul class="sub-menu js__content">
+                            <li><a href="tables-basic.html">Basic Tables</a></li>
+                            <li><a href="tables-datatable.html">Data Tables</a></li>
+                            <li><a href="tables-responsive.html">Responsive Tables</a></li>
+                            <li><a href="tables-editable.html">Editable Tables</a></li>
+                        </ul>
+                        <!-- /.sub-menu js__content -->
+                    </li>
+                </ul>
+                <!-- /.menu js__accordion -->
+                <h5 class="title">Additions</h5>
+                <!-- /.title -->
+                <ul class="menu js__accordion">
+                    <li>
+                        <a class="waves-effect" href="profile.html"><i
+                                class="menu-icon ti-user"></i><span>Profile</span></a>
+                    </li>
 
-				<li>
-					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-layers"></i><span>Page</span><span class="menu-arrow fa fa-angle-down"></span></a>
-					<ul class="sub-menu js__content">
-						<li><a href="page-starter.html">Starter Page</a></li>
-						<li><a href="page-login.html">Login</a></li>
-						<li><a href="page-register.html">Register</a></li>
-						<li><a href="page-recoverpw.html">Recover Password</a></li>
-						<li><a href="page-lock-screen.html">Lock Screen</a></li>
-						<li><a href="page-confirm-mail.html">Confirm Mail</a></li>
-						<li><a href="page-404.html">Error 404</a></li>
-						<li><a href="page-500.html">Error 500</a></li>
-					</ul>
-					<!-- /.sub-menu js__content -->
-				</li>
-				<li>
-					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-blackboard"></i><span>Extra Pages</span><span class="menu-arrow fa fa-angle-down"></span></a>
-					<ul class="sub-menu js__content">
-						<li><a href="extras-contact.html">Contact list</a></li>
-						<li><a href="extras-email-template.html">Email template</a></li>
-						<li><a href="extras-faq.html">FAQ</a></li>
-						<li><a href="extras-gallery.html">Gallery</a></li>
-						<li><a href="extras-invoice.html">Invoice</a></li>
-						<li><a href="extras-maps.html">Maps</a></li>
-						<li><a href="extras-pricing.html">Pricing</a></li>
-						<li><a href="extras-projects.html">Projects</a></li>
-						<li><a href="extras-taskboard.html">Taskboard</a></li>
-						<li><a href="extras-timeline.html">Timeline</a></li>
-						<li><a href="extras-tour.html">Tour</a></li>
-					</ul>
-					<!-- /.sub-menu js__content -->
-				</li>
-			</ul>
-			<!-- /.menu js__accordion -->
-		</div>
-		<!-- /.navigation -->
-	</div>
-	<!-- /.content -->
-</div>
-<!-- /.main-menu -->
-
-<div class="fixed-navbar">
-	<div class="pull-left">
-		<button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
-		<h1 class="page-title">Compose</h1>
-		<!-- /.page-title -->
-	</div>
-	<!-- /.pull-left -->
-	<div class="pull-right">
-		<div class="ico-item">
-			<a href="#" class="ico-item ti-search js__toggle_open" data-target="#searchform-header"></a>
-			<form action="#" id="searchform-header" class="searchform js__toggle"><input type="search" placeholder="Search..." class="input-search"><button class="ti-search button-search" type="submit"></button></form>
-			<!-- /.searchform -->
-		</div>
-		<!-- /.ico-item -->
-
-		<div class="ico-item">
-			<i class="ti-user"></i>
-			<ul class="sub-ico-item">
-				<li><a href="#">Settings</a></li>
-				<li><a class="js__logout" href="#">Log Out</a></li>
-			</ul>
-			<!-- /.sub-ico-item -->
-		</div>
-	</div>
-	<!-- /.pull-right -->
-</div>
-<!-- /.fixed-navbar -->
-
-
-
-<div id="wrapper">
-	<div class="main-content">
-	<div class='row'>
-       {{$slot}}
+                    <li>
+                        <a class="waves-effect parent-item js__control" href="#"><i
+                                class="menu-icon ti-layers"></i><span>Page</span><span
+                                class="menu-arrow fa fa-angle-down"></span></a>
+                        <ul class="sub-menu js__content">
+                            <li><a href="page-starter.html">Starter Page</a></li>
+                            <li><a href="page-login.html">Login</a></li>
+                            <li><a href="page-register.html">Register</a></li>
+                            <li><a href="page-recoverpw.html">Recover Password</a></li>
+                            <li><a href="page-lock-screen.html">Lock Screen</a></li>
+                            <li><a href="page-confirm-mail.html">Confirm Mail</a></li>
+                            <li><a href="page-404.html">Error 404</a></li>
+                            <li><a href="page-500.html">Error 500</a></li>
+                        </ul>
+                        <!-- /.sub-menu js__content -->
+                    </li>
+                    <li>
+                        <a class="waves-effect parent-item js__control" href="#"><i
+                                class="menu-icon ti-blackboard"></i><span>Extra Pages</span><span
+                                class="menu-arrow fa fa-angle-down"></span></a>
+                        <ul class="sub-menu js__content">
+                            <li><a href="extras-contact.html">Contact list</a></li>
+                            <li><a href="extras-email-template.html">Email template</a></li>
+                            <li><a href="extras-faq.html">FAQ</a></li>
+                            <li><a href="extras-gallery.html">Gallery</a></li>
+                            <li><a href="extras-invoice.html">Invoice</a></li>
+                            <li><a href="extras-maps.html">Maps</a></li>
+                            <li><a href="extras-pricing.html">Pricing</a></li>
+                            <li><a href="extras-projects.html">Projects</a></li>
+                            <li><a href="extras-taskboard.html">Taskboard</a></li>
+                            <li><a href="extras-timeline.html">Timeline</a></li>
+                            <li><a href="extras-tour.html">Tour</a></li>
+                        </ul>
+                        <!-- /.sub-menu js__content -->
+                    </li>
+                </ul>
+                <!-- /.menu js__accordion -->
+            </div>
+            <!-- /.navigation -->
+        </div>
+        <!-- /.content -->
     </div>
-		<!-- /.row -->
-		<footer class="footer">
-			<ul class="list-inline">
-				<li>2024 © YouBee.ai</li>
-				<li><a href="#">Privacy</a></li>
-				<li><a href="#">Terms</a></li>
-				<li><a href="#">Help</a></li>
-			</ul>
-		</footer>
-	</div>
-	<!-- /.main-content -->
-</div><!--/#wrapper -->
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-		<script src="assets/script/html5shiv.min.js"></script>
-		<script src="assets/script/respond.min.js"></script>
-	<![endif]-->
-	<!--
-	================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="{{asset('assets/scripts/jquery.min.js')}}"></script>
-	<script src="{{asset('assets/scripts/modernizr.min.js')}}"></script>
-	<script src="{{asset('assets/plugin/bootstrap/js/bootstrap.min.js')}}"></script>
-	<script src="{{asset('assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js')}}"></script>
-	<script src="{{asset('assets/plugin/nprogress/nprogress.js')}}"></script>
-	<script src="{{asset('assets/plugin/sweet-alert/sweetalert.min.js')}}"></script>
-	<script src="{{asset('assets/plugin/waves/waves.min.js')}}"></script>
-	<!-- Sparkline Chart -->
-	<script src="{{asset('assets/plugin/chart/sparkline/jquery.sparkline.min.js')}}"></script>
-	<script src="{{asset('assets/scripts/chart.sparkline.init.min.js')}}"></script>
+    <!-- /.main-menu -->
 
-	<!-- TinyMCE -->
-	<!-- Plugin Files DON'T INCLUDES THESES FILES IF YOU USE IN THE HOST -->
-	<link rel="stylesheet" href="{{asset('assets/plugin/tinymce/skins/lightgray/skin.min.css')}}">
-	<script src="{{asset('assets/plugin/tinymce/plugins/advlist/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/anchor/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/autolink/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/autoresize/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/autosave/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/bbcode/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/charmap/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/code/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/codesample/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/colorpicker/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/contextmenu/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/directionality/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/emoticons/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/example/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/example_dependency/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/fullpage/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/fullscreen/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/hr/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/image/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/imagetools/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/importcss/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/insertdatetime/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/layer/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/legacyoutput/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/link/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/lists/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/media/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/nonbreaking/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/noneditable/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/pagebreak/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/paste/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/preview/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/print/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/save/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/searchreplace/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/spellchecker/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/tabfocus/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/table/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/template/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/textcolor/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/textpattern/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/visualblocks/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/visualchars/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/plugins/wordcount/plugin.min.js')}} "></script>
-	<script src="{{asset('assets/plugin/tinymce/themes/modern/theme.min.js')}}"></script>
-	<!-- Plugin Files DON'T INCLUDES THESES FILES IF YOU USE IN THE HOST -->
+    <div class="fixed-navbar">
+        <div class="pull-left">
+            <button type="button"
+                class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
+            <h1 class="page-title">Compose</h1>
+            <!-- /.page-title -->
+        </div>
+        <!-- /.pull-left -->
+        <div class="pull-right">
+            <div class="ico-item">
+                <a href="#" class="ico-item ti-search js__toggle_open" data-target="#searchform-header"></a>
+                <form action="#" id="searchform-header" class="searchform js__toggle"><input type="search"
+                        placeholder="Search..." class="input-search"><button class="ti-search button-search"
+                        type="submit"></button></form>
+                <!-- /.searchform -->
+            </div>
+            <!-- /.ico-item -->
 
-	<script src="{{asset('assets/scripts/tinymce.init.min.js')}}"></script>
+            <div class="ico-item">
+                <i class="ti-user"></i>
+                <ul class="sub-ico-item">
+                    <li><a href="#">Settings</a></li>
+                    <li><a class="js__logout" href="#">Log Out</a></li>
+                </ul>
+                <!-- /.sub-ico-item -->
+            </div>
+        </div>
+        <!-- /.pull-right -->
+    </div>
+    <!-- /.fixed-navbar -->
 
 	<script src="{{asset('assets/scripts/main.min.js')}}"></script>
 
@@ -313,4 +233,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 </body>
+
 </html>

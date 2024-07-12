@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('total_installments');
             $table->string('installment_period');
             $table->timestamps();
-            $table->softDeletes(); // Add this line
+            $table->softDeletes();
 
             $table->foreign('source_id')->references('source_id')->on('sources')->onDelete('cascade');
         });
