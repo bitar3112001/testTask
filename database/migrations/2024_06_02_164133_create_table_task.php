@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('task', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('name');
             $table->date('deploy_date')->nullable();
             $table->date('submit_date')->nullable();
             $table->unsignedBigInteger('project_id');
