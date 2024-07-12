@@ -15,12 +15,16 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->date('deploy_date')->nullable();
             $table->date('submit_date')->nullable();
-            $table->unsignedBigInteger('project_id');
             $table->longText('description');
-            $table->foreign('project_id')->references('id')->on('project');
-            $table->enum('status',['pending','done','late','end'])->nullable()->default('pending');
+            $table->softDeletes();
+            $table->unsignedBigInteger('project_id');
+            $table->foreign('employee_id')->references('id')->on('users');
+          //  $table->date('deploy_date')->nullable();
+         //   $table->unsignedBigInteger('project_id');
+           // $table->foreign('project_id')->references('id')->on('project');
+           // $table->enum('status',['pending','done','late','end'])->nullable()->default('pending');
+       
         });
     }
 

@@ -4,6 +4,8 @@
         <div class="d-flex flex-row">
             <div class="box-content card white bigger-box col-lg-12 mr-4">
                 <h4 class="box-title">To do 1</h4>
+                <span class="board-dots"> ⋮</span>
+        
                 <div class="card-content">
                     <div class="form-group">
                         <div class="created_tasks"></div>
@@ -23,29 +25,30 @@
     <div class="edit_bar box-content closebar ">
         <div class="close-btn"></div>
         <div class="items">
-            <div class="discreption">
-                <span class="discription_click" style="cursor: pointer;">Add a description</span>
-                <div class="tiny_desc"></div>
-                <div class="employee_description">
-                    <textarea name="description" id="description" cols="160" rows="4"></textarea>
+            <div class="parent_child"></div>
+            <div class="description-container">
+                <span class="description_click" style="cursor: pointer;">Add a description</span>
+                <div class="description-editor">
+                    <textarea id="descriptionEditor"></textarea>
+                    <button id="saveDescription">Save</button>
+                    <button id="cancelDescription">cancel</button>
                 </div>
-                <button class="save_description">Save</button>
-                <button class="cancel_description">Cancel</button>
+                <div class="description-data"></div>
             </div>
             <div class="comment" style="margin-top:25px">
-                <span class="comment_click" style="cursor: pointer;">Add a comment</span>
-                <div class="tiny_comment">
-                    <textarea name="comment" id="comment" cols="160" rows="5"></textarea>
+                <div class="comment" style="margin-top:25px">
+                    <span class="comment_click" style="cursor: pointer;">Add a comment</span>
+                    <div class="tiny_comment" style="display: none;">
+                        <textarea name="comment" id="comment" cols="60" rows="5"></textarea>
+                    </div>
+                    <button class="save_comment">Add</button>
+                    <button class="cancel_comment" style="display: none;">Cancel</button>
+                    <div id="commentContainer"></div>
                 </div>
-                <div id="commentContainer"></div>
-
-                <button class="save_comment">Save</button>
-                <button class="cancel_comment">Cancel</button>
-            </div>
 
         </div>
     </div>
-    <div class="overlay" id="overlay"></div> <!-- Overlay div -->
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </x-sidebar>

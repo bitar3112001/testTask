@@ -38,3 +38,5 @@ Route::get('/admin/task/managment',[TaskController::class,'Manage_Task_View']);
 //  Route::put('/admin/assignment/end/{id}', [TaskController::class, 'endproject']);
 //Route::get('/admin/assignment',[TaskController::class,'AssignmentView']);
 //Route::post('/admin/assignment',[TaskController::class,'NewProject']);
+
+Route::get('/admin/task/test',[TaskController::class,'test']);

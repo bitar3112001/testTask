@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\Tasks;
 use Illuminate\Console\View\Components\Task;
 use Illuminate\Http\Request;
+use Illuminate\Testing\TestView;
 
 class TaskController extends Controller
 {
@@ -111,7 +112,15 @@ class TaskController extends Controller
         return view('tasks/task_managment',compact('tasks'));
     }
 
+    public function test(){
+        $tasks=Tasks::all();
+        return view('tasks/testtask');
+    }
+
+
 }
+
+
 
 
 // not required for further updates 
