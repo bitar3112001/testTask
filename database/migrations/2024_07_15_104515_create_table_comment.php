@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('board', function (Blueprint $table) {
+        Schema::create('comment', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('type');
-            $table->unsignedBigInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('project');
+            $table->unsignedBigInteger('task_id');
+            $table->foreign('task_id')->references('id')->on('task');
+          //  $table->unsignedBigInteger('employee_id');
+           // $table->foreign('employee_id')->references('id')->on('users');
+            $table->longText('comment');
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -26,7 +28,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('task', function (Blueprint $table) {
+        Schema::table('comment', function (Blueprint $table) {
             $table->dropSoftDeletes(); 
         });
     }

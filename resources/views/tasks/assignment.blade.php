@@ -139,7 +139,13 @@
                             data-target="#editModal{{ $project->id }}">Edit</button>
                         <button type="button" class="btn btn-danger end" data-toggle="modal"
                             data-target="#endModal{{ $project->id }}">END</button>
-                    </td>
+
+                            {{-- 
+                            <button id="project_id" type="button" class="btn btn-info" data-toggle="modal"
+                                data-target="{{ $project->id }}">manage pr tasks</button> --}}
+                   
+                                <a href="/admin/task/managment/{{ $project->id}}">test</a>
+                            </td>
                 </tr>
 
                 <!-- Edit Modal -->
@@ -268,4 +274,16 @@
             $('#endModal' + data[0]).modal('show');
         });
     });
+
+
+
+//     let project_btn = document.getElementById('project_id');
+// project_btn.addEventListener('click',function(){
+//     console.log('click');
+//   var project_id=  project_btn.getAttribute('data-target');
+//   window.location.href =`/admin/task/managment/${project_id}`;
+   
+//     });
+
+
 </script>

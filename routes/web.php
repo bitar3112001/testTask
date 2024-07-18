@@ -36,16 +36,28 @@ Route::get('/admin/assignment',[TaskController::class,'AssignmentView']);
 Route::post('/admin/assignment',[TaskController::class,'NewAssignment']);
 Route::put('/admin/assignment/end/{id}', [TaskController::class, 'EndAssignment']);
 Route::put('/admin/assignment/{id}', [TaskController::class, 'AssignmentEdit']);
-Route::get('/admin/task/managment',[TaskController::class,'Manage_Task_View']);
+Route::get('/admin/task/managment/{id}',[TaskController::class,'Manage_Task_View']);
 //  Route::put('/admin/assignment/end/{id}', [TaskController::class, 'endproject']);
 //Route::get('/admin/assignment',[TaskController::class,'AssignmentView']);
 //Route::post('/admin/assignment',[TaskController::class,'NewProject']);
 
 Route::get('/admin/task/test',[TaskController::class,'test']);
 
-Route::post('/admin/assignment',[TaskController::class,'NewProject']);
+//Route::post('/admin/assignment',[TaskController::class,'NewProject']);
 
 
+Route::post('/saveboard',[TaskController::class,'saveBoard']);
+Route::post('/savetask',[TaskController::class,'saveTask']);
+Route::post('/deletetask',[TaskController::class,'DeleteTask']);
+Route::post('/deleteboard',[TaskController::class,'DeleteBoard']);
+Route::post('/savedescription',[TaskController::class,'saveDescription']);
+Route::post('/getdescription/{id}',[TaskController::class,'getDescription']);
+Route::post('/savecomment',[TaskController::class,'saveComment']);
+Route::post('/getcomments/{id}',[TaskController::class,'getCommnets']);
+Route::delete('/deltecomment/{id}',[TaskController::class,'DeleteCommnet']);
+Route::put('/editboardname',[TaskController::class,'editBoardName']);
+Route::put('/edittaskname',[TaskController::class,'editTaskName']);
+Route::put('/editcomment',[TaskController::class,'editComment']);
 // Acounting start
 
 Route::get('/payments/create', [PaymentController::class, 'create'])->name('payments.create');

@@ -16,13 +16,15 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->date('submit_date')->nullable();
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->softDeletes();
-            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('employee_id')->nullable();
             $table->foreign('employee_id')->references('id')->on('users');
+            $table->unsignedBigInteger('board_id');
+            $table->foreign('board_id')->references('id')->on('board');
           //  $table->date('deploy_date')->nullable();
-         //   $table->unsignedBigInteger('project_id');
-           // $table->foreign('project_id')->references('id')->on('project');
+            $table->unsignedBigInteger('project_id');
+            $table->foreign('project_id')->references('id')->on('project');
            // $table->enum('status',['pending','done','late','end'])->nullable()->default('pending');
        
         });
@@ -33,6 +35,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('task');
+        Schema::table('task', function (Blueprint $table) {
+            $table->dropSoftDeletes(); 
+        });
     }
 };

@@ -5,18 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-class Tasks extends Model
+class Comment extends Model
 {
     use HasFactory;
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-    protected $table = 'task';
+    protected $table ='comment';
     protected $fillable=[
-        'project_id',
-        'board_id',
-        'name',
-        'description',
-        'employee_id',
-        'submit_date'
+        'task_id',
+        'comment',
     ];
 }
