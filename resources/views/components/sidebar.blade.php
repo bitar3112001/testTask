@@ -9,13 +9,13 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token()}}">
     <title>Youbee</title>
-    <!-- boot strap -->
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Main Styles -->
     <link rel="stylesheet" href="{{ asset('assets/styles/style2.css') }}">
-    {{-- Task Management Styles --}}
+    <!-- Task Management Styles -->
     <link rel="stylesheet" href="{{ asset('assets/Tasks/tasks.css') }}">
     <!-- Themify Icon -->
     <link rel="stylesheet" href="{{ asset('assets/fonts/themify-icons/themify-icons.css') }}">
@@ -36,7 +36,7 @@
 
     <!-- Dark Themes -->
     <link rel="stylesheet" href="{{ asset('assets/styles/style-black.min.css') }}">
-    {{-- boot strap icons  --}}
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         /* .navigation .menu .menu-icon:hover {
@@ -46,45 +46,34 @@
             color: #fca311
         } */
     </style>
-
-
 </head>
 
 <body>
     <div class="main-menu">
         <header class="header">
-            <a href="index.html" class="logo">
-                {{-- <i class="ico ti-rocket"></i> --}}
-                YouBee.ai</a>
+            <a href="index.html" class="logo">YouBee.ai</a>
             <button type="button" class="button-close fa fa-times js__menu_close"></button>
         </header>
         <!-- /.header -->
         <div class="content">
-
             <div class="navigation">
                 <h5 class="title">Navigation</h5>
                 <!-- /.title -->
                 <ul class="menu js__accordion">
                     <li>
-                        <a class="waves-effect" href="{{ route('addEmployee') }}"><i
-                                class="menu-icon fa fa-user-plus"></i><span>Add Employee</span></a>
+                        <a class="waves-effect" href="{{ route('addEmployee') }}"><i class="menu-icon fa fa-user-plus"></i><span>Add Employee</span></a>
                     </li>
                     <li>
-                        <a class="waves-effect" href="{{ route('addCustomer') }}"><i
-                                class="menu-icon fa fa-user"></i><span>Add Customer</span></a>
+                        <a class="waves-effect" href="{{ route('addCustomer') }}"><i class="menu-icon fa fa-user"></i><span>Add Customer</span></a>
                     </li>
                     <li>
-                        <a class="waves-effect" href="{{ route('addRole') }}"><i
-                                class="menu-icon fa fa-hand-stop-o"></i><span>Add Role</span></a>
+                        <a class="waves-effect" href="{{ route('addRole') }}"><i class="menu-icon fa fa-hand-stop-o"></i><span>Add Role</span></a>
                     </li>
                     <li>
-                        <a class="waves-effect" href="calendar.html"><i
-                                class="menu-icon ti-calendar"></i><span>Calendar</span></a>
+                        <a class="waves-effect" href="calendar.html"><i class="menu-icon ti-calendar"></i><span>Calendar</span></a>
                     </li>
                     <li>
-                        <a class="waves-effect parent-item js__control" href="#"><i
-                                class="menu-icon ti-bar-chart"></i><span>Charts</span><span
-                                class="menu-arrow fa fa-angle-down"></span></a>
+                        <a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-bar-chart"></i><span>Charts</span><span class="menu-arrow fa fa-angle-down"></span></a>
                         <ul class="sub-menu js__content">
                             <li><a href="chart-3d.html">3D Charts</a></li>
                             <li><a href="chart-chartist.html">Chartist Charts</a></li>
@@ -99,56 +88,40 @@
                         <!-- /.sub-menu js__content -->
                     </li>
                     <li>
-                        <a class="waves-effect" href="widgets.html"><i
-                                class="menu-icon ti-layers-alt"></i><span>Widgets</span><span
-                                class="notice notice-yellow">6</span></a>
+                        <a class="waves-effect" href="widgets.html"><i class="menu-icon ti-layers-alt"></i><span>Widgets</span><span class="notice notice-yellow">6</span></a>
                     </li>
                 </ul>
-                <!-- /.menu js__accordion -->
-                <h5 class="title">User Interface</h5>
-                <!-- /.title -->
-                <ul class="menu js__accordion">
-                    <li>
-                        <a class="waves-effect parent-item js__control" href="#"><i
-                                class="menu-icon ti-flag"></i><span>Icons</span><span
-                                class="menu-arrow fa fa-angle-down"></span></a>
-                        <ul class="sub-menu js__content">
-                            <li><a href="icons-font-awesome-icons.html">Font Awesome</a></li>
-                            <li><a href="icons-fontello.html">Fontello</a></li>
-                            <li><a href="icons-material-icons.html">Material Design Icons</a></li>
-                            <li><a href="icons-material-design-iconic.html">Material Design Iconic Font</a></li>
-                            <li><a href="icons-themify-icons.html">Themify Icons</a></li>
-                        </ul>
-                        <!-- /.sub-menu js__content -->
-                    </li>
 
+                <!-- Uncomment this block if needed
+                <h5 class="title">
+                    <a class="accLink" style="display:flex; flex-direction: row; justify-content: space-between;" data-bs-toggle="collapse" href="#accountingMenu" role="button" aria-expanded="false" aria-controls="accountingMenu" style="color:#212121;">
+                        <span>Accounting</span><span class="menu-arrow fa fa-angle-down"></span>
+                    </a>
+                </h5>
+                <div class="collapse" id="accountingMenu">
+                    <ul class="menu js__content">
+                        <li>
+                            <a class="waves-effect" href="{{ route('payments.create') }}"><i class="menu-icon fa fa-credit-card"></i><span>Payments</span></a>
+                        </li>
+                        <li>
+                            <a class="waves-effect" href="{{ route('payments.create') }}"><i class="menu-icon fa fa-chart-line"></i><span>Revenue</span></a>
+                        </li>
+                        <li>
+                            <a class="waves-effect" href="{{ route('payments.create') }}"><i class="menu-icon fa fa-money-bill-wave"></i><span>Expenses</span></a>
+                        </li>
+                    </ul>
+                </div>
+                -->
 
-                    <li>
-                        <a class="waves-effect parent-item js__control" href="#"><i
-                                class="menu-icon ti-layout-accordion-merged"></i><span>Tables</span><span
-                                class="menu-arrow fa fa-angle-down"></span></a>
-                        <ul class="sub-menu js__content">
-                            <li><a href="tables-basic.html">Basic Tables</a></li>
-                            <li><a href="tables-datatable.html">Data Tables</a></li>
-                            <li><a href="tables-responsive.html">Responsive Tables</a></li>
-                            <li><a href="tables-editable.html">Editable Tables</a></li>
-                        </ul>
-                        <!-- /.sub-menu js__content -->
-                    </li>
-                </ul>
                 <!-- /.menu js__accordion -->
                 <h5 class="title">Additions</h5>
                 <!-- /.title -->
                 <ul class="menu js__accordion">
                     <li>
-                        <a class="waves-effect" href="profile.html"><i
-                                class="menu-icon ti-user"></i><span>Profile</span></a>
+                        <a class="waves-effect" href="profile.html"><i class="menu-icon ti-user"></i><span>Profile</span></a>
                     </li>
-
                     <li>
-                        <a class="waves-effect parent-item js__control" href="#"><i
-                                class="menu-icon ti-layers"></i><span>Page</span><span
-                                class="menu-arrow fa fa-angle-down"></span></a>
+                        <a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-layers"></i><span>Page</span><span class="menu-arrow fa fa-angle-down"></span></a>
                         <ul class="sub-menu js__content">
                             <li><a href="page-starter.html">Starter Page</a></li>
                             <li><a href="page-login.html">Login</a></li>
@@ -162,21 +135,17 @@
                         <!-- /.sub-menu js__content -->
                     </li>
                     <li>
-                        <a class="waves-effect parent-item js__control" href="#"><i
-                                class="menu-icon ti-blackboard"></i><span>Extra Pages</span><span
-                                class="menu-arrow fa fa-angle-down"></span></a>
+                        <a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-blackboard"></i><span>Accounting</span><span class="menu-arrow fa fa-angle-down"></span></a>
                         <ul class="sub-menu js__content">
-                            <li><a href="extras-contact.html">Contact list</a></li>
-                            <li><a href="extras-email-template.html">Email template</a></li>
-                            <li><a href="extras-faq.html">FAQ</a></li>
-                            <li><a href="extras-gallery.html">Gallery</a></li>
-                            <li><a href="extras-invoice.html">Invoice</a></li>
-                            <li><a href="extras-maps.html">Maps</a></li>
-                            <li><a href="extras-pricing.html">Pricing</a></li>
-                            <li><a href="extras-projects.html">Projects</a></li>
-                            <li><a href="extras-taskboard.html">Taskboard</a></li>
-                            <li><a href="extras-timeline.html">Timeline</a></li>
-                            <li><a href="extras-tour.html">Tour</a></li>
+                            <li>
+                                <a class="waves-effect" href="{{ route('payments.create') }}"><i class="menu-icon fa fa-credit-card"></i><span>Payments</span></a>
+                            </li>
+                            <li>
+                                <a class="waves-effect" href="{{ route('payments.create') }}"><i class="menu-icon fa fa-chart-line"></i><span>Revenue</span></a>
+                            </li>
+                            <li>
+                                <a class="waves-effect" href="{{ route('payments.create') }}"><i class="menu-icon fa fa-money-bill-wave"></i><span>Expenses</span></a>
+                            </li>
                         </ul>
                         <!-- /.sub-menu js__content -->
                     </li>
@@ -191,8 +160,7 @@
 
     <div class="fixed-navbar">
         <div class="pull-left">
-            <button type="button"
-                class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
+            <button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
             <h1 class="page-title">Compose</h1>
             <!-- /.page-title -->
         </div>
@@ -225,8 +193,6 @@
             <div class='row'>
                 {{ $slot }}
             </div>
-
-
             <!-- /.row -->
             <footer class="footer">
                 <ul class="list-inline">
@@ -238,14 +204,15 @@
             </footer>
         </div>
         <!-- /.main-content -->
-    </div><!--/#wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-  <script src="assets/script/html5shiv.min.js"></script>
-  <script src="assets/script/respond.min.js"></script>
- <![endif]-->
-    <!--
- ================================================== -->
+        <script src="assets/script/html5shiv.min.js"></script>
+        <script src="assets/script/respond.min.js"></script>
+    <![endif]-->
+
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="{{ asset('assets/scripts/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/scripts/modernizr.min.js') }}"></script>
@@ -259,7 +226,7 @@
     <script src="{{ asset('assets/scripts/chart.sparkline.init.min.js') }}"></script>
 
     <!-- TinyMCE -->
-    <!-- Plugin Files DON'T INCLUDES THESES FILES IF YOU USE IN THE HOST -->
+    <!-- Plugin Files DON'T INCLUDES THESE FILES IF YOU USE IN THE HOST -->
     <link rel="stylesheet" href="{{ asset('assets/plugin/tinymce/skins/lightgray/skin.min.css') }}">
     <script src="{{ asset('assets/plugin/tinymce/plugins/advlist/plugin.min.js') }} "></script>
     <script src="{{ asset('assets/plugin/tinymce/plugins/anchor/plugin.min.js') }} "></script>
@@ -306,8 +273,7 @@
     <script src="{{ asset('assets/plugin/tinymce/plugins/visualchars/plugin.min.js') }} "></script>
     <script src="{{ asset('assets/plugin/tinymce/plugins/wordcount/plugin.min.js') }} "></script>
     <script src="{{ asset('assets/plugin/tinymce/themes/modern/theme.min.js') }}"></script>
-    <!-- Plugin Files DON'T INCLUDES THESES FILES IF YOU USE IN THE HOST -->
-
+    <!-- Plugin Files DON'T INCLUDES THESE FILES IF YOU USE IN THE HOST -->
     <script src="{{ asset('assets/scripts/tinymce.init.min.js') }}"></script>
 
     <script src="{{ asset('assets/scripts/main.min.js') }}"></script>
