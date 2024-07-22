@@ -19,7 +19,7 @@
         text-align: left;
     }
 
-  .assignment_table  th,
+    .assignment_table th,
     td {
         border: 1px solid #dee2e6;
         padding: 10px;
@@ -40,11 +40,7 @@
     .btn-primary {
         background-color: #007bff;
         border-color: #007bff;
-    }
-
-    .btn-secondary {
-        background-color: #6c757d;
-        border-color: #6c757d;
+        width: 25%;
     }
 
     .modal,
@@ -103,8 +99,9 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add Project/Task</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            style="color: #007bff">Close</button>
+                        <button type="submit" class="btn btn-primary">Add Project</button>
                     </div>
                 </form>
             </div>
@@ -140,12 +137,13 @@
                         <button type="button" class="btn btn-danger end" data-toggle="modal"
                             data-target="#endModal{{ $project->id }}">END</button>
 
-                            {{-- 
+                        {{-- 
                             <button id="project_id" type="button" class="btn btn-info" data-toggle="modal"
                                 data-target="{{ $project->id }}">manage pr tasks</button> --}}
-                   
-                                <a href="/admin/task/managment/{{ $project->id}}">test</a>
-                            </td>
+                        <button type="button" class="btn btn-info"><a href="/admin/task/managment/{{ $project->id }}"
+                                style="color: white">Manage</a></button>
+
+                    </td>
                 </tr>
 
                 <!-- Edit Modal -->
@@ -277,13 +275,11 @@
 
 
 
-//     let project_btn = document.getElementById('project_id');
-// project_btn.addEventListener('click',function(){
-//     console.log('click');
-//   var project_id=  project_btn.getAttribute('data-target');
-//   window.location.href =`/admin/task/managment/${project_id}`;
-   
-//     });
+    //     let project_btn = document.getElementById('project_id');
+    // project_btn.addEventListener('click',function(){
+    //     console.log('click');
+    //   var project_id=  project_btn.getAttribute('data-target');
+    //   window.location.href =`/admin/task/managment/${project_id}`;
 
-
+    //     });
 </script>

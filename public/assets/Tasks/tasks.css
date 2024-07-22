@@ -1,11 +1,17 @@
 .Project_name {
-    margin-bottom: 40px;
+    margin-bottom: 2%;
+    height: 55px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: larger;
+    font-weight: 900;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #F4CE14;
+    color: #45474B;
+    border-radius: 15px 30px;
 }
-
-.task {
-    height: 100px;
-}
-
 
 
 .hidden {
@@ -13,6 +19,7 @@
 }
 
 .task {
+    height: 100px;
     display: flex;
     flex-direction: column;
 }
@@ -101,40 +108,121 @@
 }
 
 
-
 .edit_bar {
     position: fixed;
     z-index: 1;
-    background-color: #f5f7fa;
-    top: 50px;
+    background-color: #FCF8F3;
+    top: 6%I !important;
     right: 0px;
     display: flex;
     flex-direction: column;
     row-gap: 20px;
-    overflow-y: scroll;
     white-space: nowrap;
-    width: 60%;
-    height: 85vh;
+    width: 55%;
     border: 1px solid grey;
     padding: 20px;
+    max-height: 95vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #FFB200 #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+
+}
+
+.edit_bar .items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    background-color: #F5F7F8;
+    margin-top: 5px;
+}
+
+.edit_bar .description-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 
+.commentContainer {
+
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#comment,
+#descriptionEditor {
+    box-sizing: border-box;
+    border: 2px solid rgb(84, 255, 5);
+    border-radius: 4px;
+}
+
+.commentContainer .comment {
+    border-radius: 7px;
+    width: 60%;
+    background-color: #FDFFD2;
+    margin: 7px 0;
+    padding: 10px 2px;
+}
+
+.user_pfp ::before {
+    font-size: 18pt;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
 
 
+.user_comment p {
+    font-size: 12pt;
+    color: #45474B;
+    font-weight: bold;
+    margin-left: 15px;
+}
+
+.commentContainer .comment .edit_comment,
+.commentContainer .comment .delete_comment {
+    width: 49%;
+    padding: 5px 10px;
+}
+
+.description-data {
+    display: flex;
+    height: 40px;
+    justify-content: flex-start;
+    font-size: 15pt;
+    font-weight: 900;
+    /* border: #EECEB9 1px solid; */
+    border-radius: 7px;
+    margin-top: 5px;
+    padding: 0;
+
+}
+
+.description-data p {
+    margin-left: 5px;
+}
 
 #saveDescription,
 #cancelDescription,
 .save_comment,
 .cancel_comment,
+.edit_comment,
+.delete_comment,
+.save_edit,
+.cancel_edit,
 .button {
-    padding: 8px;
+    height: 40px;
     border: none;
-    border-radius: 5px;
     font-weight: bolder;
-    background-color: gainsboro;
-    color: black;
+    background-color: #FFB200;
+    color: #FEFBD8;
     margin-top: 10px;
+    width: 50%;
+    border-radius: 7px;
 }
 
 
@@ -142,8 +230,12 @@
 #cancelDescription:hover,
 .save_comment:hover,
 .cancel_comment:hover,
+.edit_comment:hover,
+.delete_comment:hover,
+.save_edit:hover,
+.cancel_edit:hover,
 .button:hover {
-    background-color: rgb(161, 160, 160);
+    background-color: #FFA823;
     border: none;
 }
 
@@ -170,14 +262,40 @@
     flex-shrink: 0;
 }
 
+/* .bigger-box {} */
 
+.box-content.card.white.bigger-box.col-lg-12.mr-4 {
+    border: #999 1px solid;
+    padding: 15px 0;
+    border-radius: 0 20px;
+}
+
+/* 
+.created_boards {
+    border: rgb(1, 7, 20) 2px dashed;
+} */
+
+.task_elements.box-content {
+    border: 1px solid #536493;
+    border-radius: 5% 0;
+    box-shadow: 0 1px 2px #134B70;
+}
 
 .parent_child {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   font-size: 15pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17pt;
+    font-weight: bolder;
+    height: 55px;
+    background-color: #FFB200;
+    color: #F5F7F8;
+    width: 100%;
+
 }
+
+
+
 
 .parent_child .box-title {
 
@@ -192,24 +310,28 @@
     font-weight: 900;
 }
 
+
+
 .description_click,
 .comment_click {
-    background-color: gainsboro;
-    color: black;
+    margin-top: 5px;
+    background-color: #FFB200;
+    color: #FEFBD8;
     padding: 6px 22px;
     width: 164px;
     font-weight: 600;
+    border-radius: 7px;
 }
 
 .description_click:hover,
 .comment_click:hover {
-    background-color: rgb(161, 160, 160);
+    background-color: #FFA823;
     border: none;
     transition: 1s;
 }
 
 .close-btn:hover {
-    background-color: #fca311;
+    background-color: #FFB200;
     /* Change background to gold on hover */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     /* Enhance shadow on hover */
@@ -254,11 +376,11 @@
 }
 
 .description-data {
-    cursor: pointer;
+    cursor: pointer;
 }
 
 
-.borad-head{
+.borad-head {
     display: flex;
     flex-direction: row;
 }
@@ -271,31 +393,39 @@
 
 
 .created_tasks {
-display: flex;
-flex-direction: column;
-row-gap: 20px;
-margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    margin-bottom: 10px;
 }
 
-.total_taskelements{
+.total_taskelements {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 15pt;
     margin-bottom: 2%;
 }
-.create_task{
-padding: 10px 20px;
-background-color: #36395A;
-color: #fff;
-border-radius: 5px;
+
+.create_task {
+    padding: 10px 20px;
+    background-color: #FFA823;
+    color: #fff;
+    border-radius: 0 7px;
 }
-.employee_profile{
+
+.create_task:hover {
+    background-color: #F4CE14;
+    transition: 1s;
+}
+
+.employee_profile {
     font-size: 15pt;
     display: flex;
     justify-content: flex-end;
- 
+
 }
+
 .pfp:hover::after {
     content: "Unassigned";
     position: absolute;
@@ -320,12 +450,11 @@ border-radius: 5px;
 .button-30 {
     align-items: center;
     appearance: none;
-    background-color: #d7d7e6;
-    border-radius: 1px;
+    background-color: #FFB200;
+    border-radius: 11%;
     border-width: 0;
-    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
     box-sizing: border-box;
-    color: #36395A;
+    color: #F5F7F8;
     cursor: pointer;
     display: inline-flex;
     font-family: "JetBrains Mono", monospace;
@@ -349,34 +478,39 @@ border-radius: 5px;
 }
 
 .button-30:focus {
-    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    border: none;
+    box-shadow: #EEEDEB 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
 }
 
 .button-30:hover {
-    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    background-color: #FFA823;
     transform: translateY(-1px);
 }
 
 .button-30:active {
-    box-shadow: #D6D6E7 0 3px 7px inset;
+    border: none;
+    box-shadow: #EEEDEB 0 3px 7px inset;
     transform: translateY(2px);
 }
-.created_boards{
+
+.created_boards {
     display: flex;
-    width:100%;
+    width: 100%;
     flex-direction: row;
     column-gap: 30px;
 }
+
 /* .row{
  overflow-x: scroll;
 } */
 
-.board-head{
+.board-head {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
+
 .threedots {
     position: relative;
     cursor: pointer;
@@ -400,9 +534,10 @@ border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 999;
 }
-.board-dots{
+
+.board-dots {
     position: relative;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .board-dots:hover::after {
@@ -422,6 +557,7 @@ border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 999;
 }
+
 .closebar {
     display: none;
 }
