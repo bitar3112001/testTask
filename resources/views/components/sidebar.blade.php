@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta name="csrf-token" content="{{ csrf_token()}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Youbee</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -45,6 +45,11 @@
         /* .navigation .menu li:hover ~ .navigation .menu .menu-icon{
             color: #fca311
         } */
+        .row {
+            display: flex;
+            flex-direction: column;
+            /* overflow-x: scroll */
+        }
     </style>
 </head>
 
@@ -61,19 +66,25 @@
                 <!-- /.title -->
                 <ul class="menu js__accordion">
                     <li>
-                        <a class="waves-effect" href="{{ route('addEmployee') }}"><i class="menu-icon fa fa-user-plus"></i><span>Add Employee</span></a>
+                        <a class="waves-effect" href="{{ route('addEmployee') }}"><i
+                                class="menu-icon fa fa-user-plus"></i><span>Add Employee</span></a>
                     </li>
                     <li>
-                        <a class="waves-effect" href="{{ route('addCustomer') }}"><i class="menu-icon fa fa-user"></i><span>Add Customer</span></a>
+                        <a class="waves-effect" href="{{ route('addCustomer') }}"><i
+                                class="menu-icon fa fa-user"></i><span>Add Customer</span></a>
                     </li>
                     <li>
-                        <a class="waves-effect" href="{{ route('addRole') }}"><i class="menu-icon fa fa-hand-stop-o"></i><span>Add Role</span></a>
+                        <a class="waves-effect" href="{{ route('addRole') }}"><i
+                                class="menu-icon fa fa-hand-stop-o"></i><span>Add Role</span></a>
                     </li>
                     <li>
-                        <a class="waves-effect" href="calendar.html"><i class="menu-icon ti-calendar"></i><span>Calendar</span></a>
+                        <a class="waves-effect" href="calendar.html"><i
+                                class="menu-icon ti-calendar"></i><span>Calendar</span></a>
                     </li>
                     <li>
-                        <a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-bar-chart"></i><span>Charts</span><span class="menu-arrow fa fa-angle-down"></span></a>
+                        <a class="waves-effect parent-item js__control" href="#"><i
+                                class="menu-icon ti-bar-chart"></i><span>Charts</span><span
+                                class="menu-arrow fa fa-angle-down"></span></a>
                         <ul class="sub-menu js__content">
                             <li><a href="chart-3d.html">3D Charts</a></li>
                             <li><a href="chart-chartist.html">Chartist Charts</a></li>
@@ -88,7 +99,9 @@
                         <!-- /.sub-menu js__content -->
                     </li>
                     <li>
-                        <a class="waves-effect" href="widgets.html"><i class="menu-icon ti-layers-alt"></i><span>Widgets</span><span class="notice notice-yellow">6</span></a>
+                        <a class="waves-effect" href="widgets.html"><i
+                                class="menu-icon ti-layers-alt"></i><span>Widgets</span><span
+                                class="notice notice-yellow">6</span></a>
                     </li>
                 </ul>
 
@@ -118,10 +131,13 @@
                 <!-- /.title -->
                 <ul class="menu js__accordion">
                     <li>
-                        <a class="waves-effect" href="profile.html"><i class="menu-icon ti-user"></i><span>Profile</span></a>
+                        <a class="waves-effect" href="profile.html"><i
+                                class="menu-icon ti-user"></i><span>Profile</span></a>
                     </li>
                     <li>
-                        <a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-layers"></i><span>Page</span><span class="menu-arrow fa fa-angle-down"></span></a>
+                        <a class="waves-effect parent-item js__control" href="#"><i
+                                class="menu-icon ti-layers"></i><span>Page</span><span
+                                class="menu-arrow fa fa-angle-down"></span></a>
                         <ul class="sub-menu js__content">
                             <li><a href="page-starter.html">Starter Page</a></li>
                             <li><a href="page-login.html">Login</a></li>
@@ -135,16 +151,21 @@
                         <!-- /.sub-menu js__content -->
                     </li>
                     <li>
-                        <a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-blackboard"></i><span>Accounting</span><span class="menu-arrow fa fa-angle-down"></span></a>
+                        <a class="waves-effect parent-item js__control" href="#"><i
+                                class="menu-icon ti-blackboard"></i><span>Accounting</span><span
+                                class="menu-arrow fa fa-angle-down"></span></a>
                         <ul class="sub-menu js__content">
                             <li>
-                                <a class="waves-effect" href="{{ route('payments.create') }}"><i class="menu-icon fa fa-credit-card"></i><span>Payments</span></a>
+                                <a class="waves-effect" href="{{ route('payments.create') }}"><i
+                                        class="menu-icon fa fa-credit-card"></i><span>Payments</span></a>
                             </li>
                             <li>
-                                <a class="waves-effect" href="{{ route('payments.create') }}"><i class="menu-icon fa fa-chart-line"></i><span>Revenue</span></a>
+                                <a class="waves-effect" href="{{ route('payments.create') }}"><i
+                                        class="menu-icon fa fa-chart-line"></i><span>Revenue</span></a>
                             </li>
                             <li>
-                                <a class="waves-effect" href="{{ route('payments.create') }}"><i class="menu-icon fa fa-money-bill-wave"></i><span>Expenses</span></a>
+                                <a class="waves-effect" href="{{ route('payments.create') }}"><i
+                                        class="menu-icon fa fa-money-bill-wave"></i><span>Expenses</span></a>
                             </li>
                         </ul>
                         <!-- /.sub-menu js__content -->
@@ -160,7 +181,8 @@
 
     <div class="fixed-navbar">
         <div class="pull-left">
-            <button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
+            <button type="button"
+                class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
             <h1 class="page-title">Compose</h1>
             <!-- /.page-title -->
         </div>
