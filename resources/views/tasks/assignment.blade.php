@@ -50,6 +50,11 @@
     }
 </style>
 <x-sidebar>
+    <div  class="error_message">
+        @if(session()->has('error'))
+        <p>{{ session('error') }}</p>
+        @endif
+    </div>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddProject_TaskModal">
         Add Project/Task

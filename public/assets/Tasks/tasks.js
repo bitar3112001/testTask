@@ -1,4 +1,93 @@
 document.addEventListener("DOMContentLoaded", function () {
+    let taskContainers = document.getElementsByClassName('created_tasks');
+    let tasks = document.getElementsByClassName("task_elements");
+    let boards = document.getElementsByClassName('bigger-box');
+
+    for (let i = 0; i < tasks.length; i++) {
+        tasks[i].draggable = true;
+        tasks[i].addEventListener('dragstart', dragStart);
+    }
+
+    for (let i = 0; i < boards.length; i++) {
+        boards[i].addEventListener('dragover', dragOver);
+        boards[i].addEventListener('drop', dropDivItems);
+    }
+
+    function dragOver(event) {
+        event.preventDefault();
+        console.log('dragging');
+    }
+
+    function dropDivItems(event) {
+        event.preventDefault();
+        console.log('drop event:', event);
+
+        // Get the dragged element
+        let draggedElement = document.querySelector('.dragging');
+
+        // Ensure the element exists
+        if (draggedElement) {
+            // Find the closest created_tasks container
+            let dropTarget = event.target.closest('.created_tasks');
+
+            // If no created_tasks container is found, find the closest bigger-box and then the created_tasks within it
+            if (!dropTarget) {
+                let boardContainer = event.target.closest('.bigger-box');
+                if (boardContainer) {
+                    dropTarget = boardContainer.querySelector('.created_tasks');
+                }
+            }
+
+            // Ensure the drop target is a valid container
+            if (dropTarget) {
+                // Append the dragged element to the drop target
+                dropTarget.appendChild(draggedElement);
+                // Remove the dragging class
+                draggedElement.classList.remove('dragging');
+
+                // Get board_id and task_id
+                let boardId = dropTarget.closest('.bigger-box').getAttribute('data-boardid');
+                let taskId = draggedElement.getAttribute('data-task_id');
+                console.log(boardId,taskId,'test ali test ');
+                // Send the board_id and task_id using Fetch API
+                fetch('/dragtasks', {
+                    method: 'PUT',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                    },
+                    body: JSON.stringify({ board_id: boardId, id: taskId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.success){
+                        return console.log(data);
+                    }
+                    else{
+                        return console.log('error');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+        }
+    }
+
+    function dragStart(event) {
+        console.log('started dragging');
+        // Add a class to identify the dragged element
+        event.target.classList.add('dragging');
+    }
+
+
+
+
+
+
+
+
+
     let deletedcomment_clicks = "";
 
     // SweetAlert setup
@@ -166,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
             body: JSON.stringify({ name: taskName, project_id: project_id, board_id: board_id }),
         })
             .then((response) => response.json())
-            .then((data) => {
+            .then((data) => { 
                 const formGroup = event.target.closest(".form-group");
                 const createdTasksDiv = formGroup.querySelector(".created_tasks");
 
