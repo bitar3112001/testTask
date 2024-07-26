@@ -58,6 +58,7 @@ Route::delete('/deltecomment/{id}',[TaskController::class,'DeleteCommnet']);
 Route::put('/editboardname',[TaskController::class,'editBoardName']);
 Route::put('/edittaskname',[TaskController::class,'editTaskName']);
 Route::put('/editcomment',[TaskController::class,'editComment']);
+Route::put('/dragtasks',[TaskController::class,'DragTasks']);
 // Acounting start
 
 Route::get('/payments/create', [PaymentController::class, 'create'])->name('payments.create');

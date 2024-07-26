@@ -14,6 +14,11 @@ use Illuminate\Testing\TestView;
 
 class TaskController extends Controller
 {
+public function ahmdview(){
+    return  view('/tasks/ahmad1');
+}
+
+    
     public function TaskView()
     {
         $projects = Project::where('type', 'project')->where('status', 'pending')->get();//get() method: This method executes the query and returns the results.
@@ -120,14 +125,28 @@ class TaskController extends Controller
         }
     }
 
-    public function Manage_Task_View($id){
-        $tasks=Tasks::all();
-        $project = project::find($id);
-        $project_name= $project->name;
+    public function Manage_Task_View($id) {
+        // Retrieve the project
+        $project = Project::find($id);
+    
+        // Check if the project exists and if its status is not 'end'
+        if (!$project || $project->status == 'end') {
+            // Handle the case where the project is not found or has ended
+            return redirect('/admin/assignment')->with('error', 'Project not found or has ended.');
+        }
+    
+        // Retrieve project details
+        $project_name = $project->name;
         $project_id = $id;
+    
+        // Retrieve boards and tasks associated with the project
         $boards = Board::where('project_id', $id)->get(); 
-        return view('tasks.task_managment',compact('project_name','project_id','boards','tasks'));
+        $tasks = Tasks::all();
+    
+        // Return the view with the retrieved data
+        return view('tasks.task_managment', compact('project_name', 'project_id', 'boards', 'tasks'));
     }
+    
 
     public function test(){
        // $tasks=Tasks::all();
@@ -294,7 +313,7 @@ public function editTaskName(Request $request){
         Log::info('star');
         $task->update(['name'=>$params['name']]);
         
-        return response()->json(['message' => 'Task name updated successfully.','success'=>true], 200);
+        return response()->json(['message' => 'Task name updated successfully.','success'=>true],202);
     } 
     else {
         return response()->json(['message' => 'Task not found.'], 404);
@@ -316,6 +335,28 @@ public function editComment(Request $request ){
         return response()->json(['message' => 'Comment not found.'], 404);
     }
 }
+
+function DragTasks(Request $request){
+    $params = $request->validate([
+        'id' => 'required|integer|min:1',
+        'board_id' => 'required|string|min:1',
+    ]);  
+    $task=Tasks::find($params['id']);
+    if ($task) {
+        Log::info('star');
+        $task->update(['board_id'=>$params['board_id']]);
+        return response()->json(['message' => 'task draged successfully.','success'=>true], 200);
+    } 
+    else {
+        return response()->json(['message' => 'task not found.'], 404);
+    }
+
+}
+
+
+
+
+
 // not required for further updates 
 
 // public    function AssignmentView(){
