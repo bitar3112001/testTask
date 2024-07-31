@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\PaymentController;
@@ -15,9 +16,18 @@ use App\Http\Controllers\PaymentController;
 |
 */
 
+
+//Login & register
 Route::get('/', function () {
-    return view('home');
+    return view('login');
 });
+
+Route::post('/login',[Controller::class,'logIn']);
+Route::get('/register',function(){ return view('register');});
+Route::post('/regis',[Controller::class,'register']);
+
+//home
+Route::get('/home',function(){return view('home');});
 
 Route::get('/admin/addRole',function(){
     return view('admin.Role.AddRole');
