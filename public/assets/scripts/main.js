@@ -132,17 +132,21 @@
 					closeOnCancel: true,
 					confirmButtonColor: '#f60e0e',
 				}, function(isConfirm){   
-					if (isConfirm) {     
+					if (isConfirm) {
+						console.log('test test ')
 						swal({
 							title : "Logout success", 
 							text: "See you later!", 
 							type: "success",
 							confirmButtonColor: '#304ffe',
-						});   
-					} else {    
+						});
+						window.location.href='/logout' ;
+					} else {   
+						console.log('wrong') 
+						return false;
 					} 
 				});
-				return false;
+				
 			});
 		},
 		menu: function(){

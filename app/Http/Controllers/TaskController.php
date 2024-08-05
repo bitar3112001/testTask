@@ -7,11 +7,12 @@ use App\Models\Tasks;
 use App\Models\Board;
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Console\View\Components\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Testing\TestView;
-
+use Illuminate\Support\Facades\Auth;
 class TaskController extends Controller
 {
 public function ahmdview(){
@@ -21,6 +22,7 @@ public function ahmdview(){
     
     public function TaskView()
     {
+        
         $projects = Project::where('type', 'project')->where('status', 'pending')->get();//get() method: This method executes the query and returns the results.
         $tasks = Project::where('type', 'task')->get();
         // $allprojects = Project::all();
@@ -67,11 +69,26 @@ public function ahmdview(){
         return redirect('/admin/task')->with('success', 'New task has been created');
     }
 
-    public function AssignmentView()
+
+    public function assignmentView()
     {
+        $user = Auth::user();
+        Log::info($user);
+
+        $role = Role::where('employee_id', $user->id)->first(); // Use first() instead of get() to retrieve a single record
+        Log::info($role);
+
+        $isAdmin = false;
+        if ($role && $role->access_role === "Admin") {
+            $isAdmin = true;
+        }
+
+        Log::info($isAdmin);
+
         $projects = Project::all();
-        return view('tasks/assignment', compact('projects'));
+        return view('tasks.assignment', compact('projects', 'isAdmin'));
     }
+
 
 
 
@@ -126,6 +143,18 @@ public function ahmdview(){
     }
 
     public function Manage_Task_View($id) {
+        $user = Auth::user();
+        Log::info($user);
+
+        $role = Role::where('employee_id', $user->id)->first(); // Use first() instead of get() to retrieve a single record
+        Log::info($role);
+
+        $isAdmin = false;
+        if ($role && $role->access_role === "Admin") {
+            $isAdmin = true;
+        }
+
+        Log::info($isAdmin);
         // Retrieve the project
         $project = Project::find($id);
     
@@ -144,7 +173,7 @@ public function ahmdview(){
         $tasks = Tasks::all();
     
         // Return the view with the retrieved data
-        return view('tasks.task_managment', compact('project_name', 'project_id', 'boards', 'tasks'));
+        return view('tasks.task_managment', compact('project_name', 'project_id', 'boards', 'tasks','isAdmin'));
     }
     
 

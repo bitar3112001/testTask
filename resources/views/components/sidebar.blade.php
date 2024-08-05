@@ -299,6 +299,7 @@
     <script src="{{ asset('assets/scripts/tinymce.init.min.js') }}"></script>
 
     <script src="{{ asset('assets/scripts/main.min.js') }}"></script>
+    <script src="{{ asset('assets/scripts/main.js') }}"></script>
     <script src="{{ asset('assets/Tasks/tasks.js') }}"></script>
 </body>
 

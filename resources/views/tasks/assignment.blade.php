@@ -55,10 +55,13 @@
         <p>{{ session('error') }}</p>
         @endif
     </div>
+    
     <!-- Button trigger modal -->
+    @if($isAdmin)
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddProject_TaskModal">
         Add Project/Task
     </button>
+    @endif
 
     <!-- Add Modal -->
     <div class="modal fade" id="AddProject_TaskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -106,7 +109,9 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"
                             style="color: #007bff">Close</button>
-                        <button type="submit" class="btn btn-primary">Add Project</button>
+                     
+                            <button type="submit" class="btn btn-primary">Add Project</button>
+                           
                     </div>
                 </form>
             </div>
@@ -137,11 +142,12 @@
                     <td>{{ $project->submit_date }}</td>
                     <td>{{ $project->status }}</td>
                     <td>
+                        @if($isAdmin)
                         <button type="button" class="btn btn-success edit" data-toggle="modal"
                             data-target="#editModal{{ $project->id }}">Edit</button>
                         <button type="button" class="btn btn-danger end" data-toggle="modal"
                             data-target="#endModal{{ $project->id }}">END</button>
-
+@endif
                         {{-- 
                             <button id="project_id" type="button" class="btn btn-info" data-toggle="modal"
                                 data-target="{{ $project->id }}">manage pr tasks</button> --}}

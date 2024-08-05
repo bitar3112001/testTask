@@ -37,4 +37,9 @@ class Controller extends BaseController
         return redirect('/');;
     }
 
+    public function logout(){
+        auth()->logout(); 
+        return redirect('/');
+    }
+
 }
