@@ -7,7 +7,7 @@
             {{-- <div class="box-content card white bigger-box col-lg-12 mr-4">
                 <h4 class="box-title">Done</h4>
                 <span class="board-dots"> ⋮</span>
-        
+
                 <div class="card-content">
                     <div class="form-group">
                         <div class="created_tasks"></div>
@@ -20,7 +20,9 @@
                 <div data-boardid="{{ $board->id }}" class="box-content card white bigger-box col-lg-12 mr-4">
                     <div class="box-title board-head">
                         <h4 class="board-title board-type">{{ $board->type }}</h4>
+                       @if($isAdmin)
                         <span class="board-dots">⋮</span>
+                        @endif
                     </div>
                     <div class="card-content">
                         <div class="form-group">
@@ -28,27 +30,34 @@
                                 @foreach ($tasks as $task)
                                     @if ($board->id == $task->board_id)
                                         <div data-task_id="{{ $task->id }}" class="task_elements box-content"
-                                            draggable="true">
+
+                                            draggable="{{ $isAdmin ? 'true' : 'false' }}">
                                             <div class="total_taskelements">
                                                 <div class="task_pen">
                                                     <span class="task_name">{{ $task->name }}</span>
                                                     <i class="bi bi-pencil-square"></i>
                                                 </div>
+                                                @if($isAdmin)
                                                 <span class="threedots">⋮</span>
+                                                @endif
                                             </div>
                                             <div class="employee_profile"><i class="bi bi-person-circle pfp"></i></div>
                                         </div>
                                     @endif
                                 @endforeach
                             </div>
+                          @if($isAdmin)
                             <label class="create_task" for="created_tasks_{{ $board->id }}">Create Task+</label>
+                        @endif
                         </div>
                     </div>
                 </div>
             @endforeach
 
 
+           @if($isAdmin)
             <button id="button-30" class="button-30" role="button">+</button>
+            @endif
         </div>
     </div>
     <div class="confirmation-dialog" id="deleteConfirmation">
@@ -62,7 +71,9 @@
         <div class="items">
             <div class="parent_child"></div>
             <div class="description-container">
+                @if($isAdmin)
                 <span class="description_click" style="cursor: pointer;">Add a description</span>
+                @endif
                 <div class="description-editor" style="display: none;">
 
                     <textarea id="descriptionEditor"></textarea>

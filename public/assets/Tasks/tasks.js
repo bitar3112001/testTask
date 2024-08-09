@@ -1,40 +1,113 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let taskContainers = document.getElementsByClassName('created_tasks');
+    let isAdmin;
+
+    // Function to check the user's role
+    async function checkUserRole() {
+        try {
+            const response = await fetch("/checkRole", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            if (response.ok) {
+                const data = await response.json();
+                console.log("Response:", data);
+                if (data.success) {
+                    isAdmin = true;
+                    console.log("User is admin:", isAdmin);
+                } else {
+                    isAdmin = false;
+                    console.log("User is not admin:", isAdmin);
+                }
+            } else {
+                console.error("Failed to check role:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Error checking role:", error);
+        }
+    }
+    // Call the main function
+    checkUserRole();
+
+    async function mainFunction() {
+        try {
+            const data = await checkUserRole();
+            if (isAdmin) {
+                // Event listener for create task button
+                const createTaskButtons =
+                    document.querySelectorAll(".create_task");
+                createTaskButtons.forEach((createTaskButton) => {
+                    createTaskButton.addEventListener("click", (event) => {
+                        if (isAdmin) {
+                            showAddTaskAlert(event);
+                        } else {
+                            return false;
+                        }
+                    });
+                });
+
+                // Event listener for creating a new board
+
+                const createboardbtn = document.getElementById("button-30");
+
+                createboardbtn.addEventListener("click", () => {
+                    if (isAdmin) {
+                        addNewCard();
+                    } else {
+                        return false;
+                    }
+                });
+            }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    }
+
+    // Call the main function
+    mainFunction();
+
     let tasks = document.getElementsByClassName("task_elements");
-    let boards = document.getElementsByClassName('bigger-box');
+    let boards = document.getElementsByClassName("bigger-box");
 
     for (let i = 0; i < tasks.length; i++) {
-        tasks[i].draggable = true;
-        tasks[i].addEventListener('dragstart', dragStart);
+        // tasks[i].draggable = isAdmin;
+        tasks[i].addEventListener("dragstart", dragStart);
     }
 
     for (let i = 0; i < boards.length; i++) {
-        boards[i].addEventListener('dragover', dragOver);
-        boards[i].addEventListener('drop', dropDivItems);
+        boards[i].addEventListener("dragover", dragOver);
+        boards[i].addEventListener("drop", dropDivItems);
     }
 
     function dragOver(event) {
+        if(!isAdmin){
+            return false;
+        }
         event.preventDefault();
-        console.log('dragging');
+        console.log("dragging");
     }
 
     function dropDivItems(event) {
+        if(!isAdmin){
+            return false;
+        }
         event.preventDefault();
-        console.log('drop event:', event);
+        console.log("drop event:", event);
 
         // Get the dragged element
-        let draggedElement = document.querySelector('.dragging');
+        let draggedElement = document.querySelector(".dragging");
 
         // Ensure the element exists
         if (draggedElement) {
             // Find the closest created_tasks container
-            let dropTarget = event.target.closest('.created_tasks');
+            let dropTarget = event.target.closest(".created_tasks");
 
             // If no created_tasks container is found, find the closest bigger-box and then the created_tasks within it
             if (!dropTarget) {
-                let boardContainer = event.target.closest('.bigger-box');
+                let boardContainer = event.target.closest(".bigger-box");
                 if (boardContainer) {
-                    dropTarget = boardContainer.querySelector('.created_tasks');
+                    dropTarget = boardContainer.querySelector(".created_tasks");
                 }
             }
 
@@ -43,50 +116,48 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Append the dragged element to the drop target
                 dropTarget.appendChild(draggedElement);
                 // Remove the dragging class
-                draggedElement.classList.remove('dragging');
+                draggedElement.classList.remove("dragging");
 
                 // Get board_id and task_id
-                let boardId = dropTarget.closest('.bigger-box').getAttribute('data-boardid');
-                let taskId = draggedElement.getAttribute('data-task_id');
-                console.log(boardId,taskId,'test ali test ');
+                let boardId = dropTarget
+                    .closest(".bigger-box")
+                    .getAttribute("data-boardid");
+                let taskId = draggedElement.getAttribute("data-task_id");
+                console.log(boardId, taskId, "test ali test ");
                 // Send the board_id and task_id using Fetch API
-                fetch('/dragtasks', {
-                    method: 'PUT',
+                fetch("/dragtasks", {
+                    method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                        "X-CSRF-TOKEN": document
+                            .querySelector('meta[name="csrf-token"]')
+                            .getAttribute("content"),
                     },
-                    body: JSON.stringify({ board_id: boardId, id: taskId })
+                    body: JSON.stringify({ board_id: boardId, id: taskId }),
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if(data.success){
-                        return console.log(data);
-                    }
-                    else{
-                        return console.log('error');
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (data.success) {
+                            return console.log(data);
+                        } else {
+                            return console.log("error");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                    });
             }
         }
     }
 
     function dragStart(event) {
-        console.log('started dragging');
+        if(!isAdmin){
+            return false;
+        }
+        console.log("started dragging");
         // Add a class to identify the dragged element
-        event.target.classList.add('dragging');
+        event.target.classList.add("dragging");
     }
-
-
-
-
-
-
-
-
 
     let deletedcomment_clicks = "";
 
@@ -103,7 +174,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let baordnames = document.querySelectorAll(".board-type");
     baordnames.forEach((baordname) => {
         baordname.addEventListener("dblclick", (event) => {
-            let board_id = event.target.closest(".bigger-box").getAttribute("data-boardid");
+            let board_id = event.target
+                .closest(".bigger-box")
+                .getAttribute("data-boardid");
             let type = "Board";
             enableEditing(baordname, type, board_id);
         });
@@ -113,7 +186,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let tasknames = document.querySelectorAll(".task_name");
     tasknames.forEach((taskname) => {
         taskname.addEventListener("dblclick", (event) => {
-            let task_id = event.target.closest(".task_elements").getAttribute("data-task_id");
+            let task_id = event.target
+                .closest(".task_elements")
+                .getAttribute("data-task_id");
             let type = "Task";
             enableEditing(taskname, type, task_id);
         });
@@ -126,7 +201,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                    "X-CSRF-TOKEN": document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
                 },
                 body: JSON.stringify({ id: id, name: text }),
             });
@@ -143,7 +220,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return false;
         }
     }
-
     // Fetch and update board name
     async function EditBoardfetch(text, id) {
         try {
@@ -151,7 +227,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                    "X-CSRF-TOKEN": document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
                 },
                 body: JSON.stringify({ id: id, name: text }),
             });
@@ -171,6 +249,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to enable editing on double-click
     async function enableEditing(element, type, id) {
+        if (!isAdmin) {
+            return false;
+        }
         const originalText = element.textContent.trim();
         const input = document.createElement("input");
         input.type = "text";
@@ -243,21 +324,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to add task to the created tasks div
     function addTask(taskName, event) {
-        let project_id = document.getElementById("projectname").getAttribute("data-projectid");
-        let board_id = event.target.closest(".bigger-box").getAttribute("data-boardid");
+        let project_id = document
+            .getElementById("projectname")
+            .getAttribute("data-projectid");
+        let board_id = event.target
+            .closest(".bigger-box")
+            .getAttribute("data-boardid");
 
         fetch("/savetask", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                "X-CSRF-TOKEN": document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content"),
             },
-            body: JSON.stringify({ name: taskName, project_id: project_id, board_id: board_id }),
+            body: JSON.stringify({
+                name: taskName,
+                project_id: project_id,
+                board_id: board_id,
+            }),
         })
             .then((response) => response.json())
-            .then((data) => { 
+            .then((data) => {
                 const formGroup = event.target.closest(".form-group");
-                const createdTasksDiv = formGroup.querySelector(".created_tasks");
+                const createdTasksDiv =
+                    formGroup.querySelector(".created_tasks");
 
                 if (createdTasksDiv) {
                     const taskElement = document.createElement("div");
@@ -275,9 +367,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="employee_profile"><i class="bi bi-person-circle"></i></div>
                     `;
                     createdTasksDiv.appendChild(taskElement);
-
+                    let tasks =
+                        document.getElementsByClassName("task_elements");
+                    for (let i = 0; i < tasks.length; i++) {
+                        // tasks[i].draggable = isAdmin;
+                        tasks[i].addEventListener("dragstart", dragStart);
+                    }
                     // Add event listener to the three dots
-                    const threeDotsElements = taskElement.querySelectorAll(".threedots");
+                    const threeDotsElements =
+                        taskElement.querySelectorAll(".threedots");
                     threeDotsElements.forEach((dot) => {
                         dot.addEventListener("click", (event) => {
                             showDeleteTaskAlert(taskElement, event);
@@ -294,7 +392,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to show SweetAlert for deleting a task
     function showDeleteTaskAlert(taskElement, event) {
-        const taskid = event.target.closest(".task_elements").getAttribute("data-task_id");
+        const taskid = event.target
+            .closest(".task_elements")
+            .getAttribute("data-task_id");
 
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -304,63 +404,53 @@ document.addEventListener("DOMContentLoaded", function () {
             buttonsStyling: false,
         });
 
-        swalWithBootstrapButtons.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "No, cancel!",
-            reverseButtons: true,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                taskElement.remove();
-                swalWithBootstrapButtons.fire({
-                    title: "Deleted!",
-                    text: "Your task has been deleted.",
-                    icon: "success",
-                });
-
-                fetch("/deletetask", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-                    },
-                    body: JSON.stringify({ task_id: taskid }),
-                })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        if (data.message === "task deleted successfully") {
-                            location.reload();
-                        }
-                    })
-                    .catch((error) => {
-                        console.error("Error:", error);
+        swalWithBootstrapButtons
+            .fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!",
+                reverseButtons: true,
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    taskElement.remove();
+                    swalWithBootstrapButtons.fire({
+                        title: "Deleted!",
+                        text: "Your task has been deleted.",
+                        icon: "success",
                     });
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                swalWithBootstrapButtons.fire({
-                    title: "Cancelled",
-                    text: "Your task is safe :)",
-                    icon: "error",
-                });
-            }
-        });
+
+                    fetch("/deletetask", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRF-TOKEN": document
+                                .querySelector('meta[name="csrf-token"]')
+                                .getAttribute("content"),
+                        },
+                        body: JSON.stringify({ task_id: taskid }),
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data.message === "task deleted successfully") {
+                                location.reload();
+                            }
+                        })
+                        .catch((error) => {
+                            console.error("Error:", error);
+                        });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Cancelled",
+                        text: "Your task is safe :)",
+                        icon: "error",
+                    });
+                }
+            });
     }
-
-    // Event listener for create task button
-    const createTaskButtons = document.querySelectorAll(".create_task");
-    createTaskButtons.forEach((createTaskButton) => {
-        createTaskButton.addEventListener("click", (event) => {
-            showAddTaskAlert(event);
-        });
-    });
-
-    // Event listener for creating a new board
-    const createboardbtn = document.getElementById("button-30");
-    createboardbtn.addEventListener("click", () => {
-        addNewCard();
-    });
 
     // Function to add a new card
     async function addNewCard() {
@@ -379,12 +469,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!newTitle) return;
 
-        let project_id = document.getElementById("projectname").getAttribute("data-projectid");
+        let project_id = document
+            .getElementById("projectname")
+            .getAttribute("data-projectid");
         fetch("/saveboard", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                "X-CSRF-TOKEN": document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content"),
             },
             body: JSON.stringify({ type: newTitle, project_id: project_id }),
         })
@@ -413,59 +507,72 @@ document.addEventListener("DOMContentLoaded", function () {
     boardDots.forEach((dot) => {
         dot.addEventListener("click", function (event) {
             const board = this.closest(".box-content");
-            let board_id = event.target.closest(".bigger-box").getAttribute("data-boardid");
+            let board_id = event.target
+                .closest(".bigger-box")
+                .getAttribute("data-boardid");
             const createdTasks = board.querySelector(".created_tasks");
 
             if (createdTasks.children.length === 0) {
-                swalWithBootstrapButtons.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Yes, delete it!",
-                    cancelButtonText: "No, cancel!",
-                    reverseButtons: true,
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        fetch("/deleteboard", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-                            },
-                            body: JSON.stringify({ id: board_id }),
-                        })
-                            .then((response) => response.json())
-                            .then((data) => {
-                                if (data.success) {
-                                    board.remove();
-                                    swalWithBootstrapButtons.fire({
-                                        title: "Deleted!",
-                                        text: "The board has been deleted.",
-                                        icon: "success",
-                                    });
-                                } else {
-                                    console.log(data);
-                                }
-                                if (data.message === "Board cannot be deleted it has tasks") {
-                                    Swal.fire({
-                                        icon: "error",
-                                        title: "Cannot delete",
-                                        text: "The board contains tasks. Please remove all tasks before deleting the board.",
-                                    });
-                                }
+                swalWithBootstrapButtons
+                    .fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, delete it!",
+                        cancelButtonText: "No, cancel!",
+                        reverseButtons: true,
+                    })
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                            fetch("/deleteboard", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "X-CSRF-TOKEN": document
+                                        .querySelector(
+                                            'meta[name="csrf-token"]'
+                                        )
+                                        .getAttribute("content"),
+                                },
+                                body: JSON.stringify({ id: board_id }),
                             })
-                            .catch((error) => {
-                                console.error("Error:", error);
+                                .then((response) => response.json())
+                                .then((data) => {
+                                    if (data.success) {
+                                        board.remove();
+                                        swalWithBootstrapButtons.fire({
+                                            title: "Deleted!",
+                                            text: "The board has been deleted.",
+                                            icon: "success",
+                                        });
+                                    } else {
+                                        console.log(data);
+                                    }
+                                    if (
+                                        data.message ===
+                                        "Board cannot be deleted it has tasks"
+                                    ) {
+                                        Swal.fire({
+                                            icon: "error",
+                                            title: "Cannot delete",
+                                            text: "The board contains tasks. Please remove all tasks before deleting the board.",
+                                        });
+                                    }
+                                })
+                                .catch((error) => {
+                                    console.error("Error:", error);
+                                });
+                        } else if (
+                            result.dismiss === Swal.DismissReason.cancel
+                        ) {
+                            swalWithBootstrapButtons.fire({
+                                title: "Cancelled",
+                                text: "The board is safe :)",
+                                icon: "error",
                             });
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                        swalWithBootstrapButtons.fire({
-                            title: "Cancelled",
-                            text: "The board is safe :)",
-                            icon: "error",
-                        });
-                    }
-                });
+                        }
+                    });
             } else {
                 Swal.fire({
                     icon: "error",
@@ -502,20 +609,31 @@ document.addEventListener("DOMContentLoaded", function () {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                    "X-CSRF-TOKEN": document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
                 },
                 body: JSON.stringify({}),
             })
                 .then((response) => response.json())
                 .then((data) => {
-                    const descriptionData = document.querySelector(".description-data");
+                    const descriptionData =
+                        document.querySelector(".description-data");
                     descriptionData.innerHTML = "";
 
                     if (data.task_desc && data.task_desc.description != null) {
                         descriptionData.innerHTML = data.task_desc.description;
-                        document.querySelector(".description_click").style.display = "none";
+                        if (isAdmin) {
+                            document.querySelector(
+                                ".description_click"
+                            ).style.display = "none";
+                        }
                     } else {
-                        document.querySelector(".description_click").style.display = "block";
+                        if (isAdmin) {
+                            document.querySelector(
+                                ".description_click"
+                            ).style.display = "block";
+                        }
                     }
                 })
                 .catch((error) => {
@@ -526,21 +644,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                    "X-CSRF-TOKEN": document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
                 },
                 body: JSON.stringify({}),
             })
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.comments && Array.isArray(data.comments)) {
-                        document.querySelector(".commentContainer").innerHTML = "";
+                        document.querySelector(".commentContainer").innerHTML =
+                            "";
                         data.comments.forEach((comment) => {
                             const commentText = comment.comment;
                             const comment_id = comment.id;
 
                             const commentDiv = document.createElement("div");
                             commentDiv.classList.add("comment");
-                            commentDiv.setAttribute("data-comment_id", comment_id);
+                            commentDiv.setAttribute(
+                                "data-comment_id",
+                                comment_id
+                            );
                             commentDiv.innerHTML = `
                                 <div class="user_pfp">
                                     <i class="bi bi-person-circle"></i>
@@ -554,8 +678,11 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <button class="edit_comment">Edit</button>
                                 <button class="delete_comment">Delete</button>
                             `;
-                            document.querySelector(".commentContainer").appendChild(commentDiv);
-                            deletedcomment_clicks = document.querySelectorAll(".delete_comment");
+                            document
+                                .querySelector(".commentContainer")
+                                .appendChild(commentDiv);
+                            deletedcomment_clicks =
+                                document.querySelectorAll(".delete_comment");
                             Deletecomment();
                             editComment();
                         });
@@ -582,13 +709,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 }).then((result) => {
                     if (result.isConfirmed) {
                         let comment = event.target.closest(".comment");
-                        let comment_id = comment.getAttribute("data-comment_id");
+                        let comment_id =
+                            comment.getAttribute("data-comment_id");
 
                         fetch("/deltecomment/" + comment_id, {
                             method: "DELETE",
                             headers: {
                                 "Content-Type": "application/json",
-                                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                                "X-CSRF-TOKEN": document
+                                    .querySelector('meta[name="csrf-token"]')
+                                    .getAttribute("content"),
                             },
                             body: JSON.stringify({}),
                         })
@@ -610,23 +740,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function editComment() {
-        let editbtncomments = document.querySelectorAll('.edit_comment');
+        let editbtncomments = document.querySelectorAll(".edit_comment");
         editbtncomments.forEach((editbtncomment) => {
-            editbtncomment.addEventListener('click', (event) => {
-                let comment = event.target.closest('.comment');
-                let comment_id = comment.getAttribute('data-comment_id');
+            editbtncomment.addEventListener("click", (event) => {
+                let comment = event.target.closest(".comment");
+                let comment_id = comment.getAttribute("data-comment_id");
                 comment.querySelector(".user_pfp").style.display = "none";
                 comment.querySelector(".edit_comment").style.display = "none";
                 comment.querySelector(".delete_comment").style.display = "none";
                 comment.querySelector(".comment_edit").style.display = "block";
-    
+
                 // Initialize TinyMCE if not already initialized
                 let commentTextArea = comment.querySelector(".comment_user");
-                if (!commentTextArea.classList.contains('tinymce-initialized')) {
+                if (
+                    !commentTextArea.classList.contains("tinymce-initialized")
+                ) {
                     tinymce.init({
                         selector: ".comment_user",
                         plugins: "code table lists image",
-                        toolbar: "undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | image",
+                        toolbar:
+                            "undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | image",
                         image_title: true,
                         automatic_uploads: true,
                         file_picker_types: "image",
@@ -634,65 +767,87 @@ document.addEventListener("DOMContentLoaded", function () {
                             // Your file picker callback function
                         },
                     });
-    
-                    commentTextArea.classList.add('tinymce-initialized');
-                }
-    
-                // Set content of TinyMCE editor with current comment text
-                tinymce.get(commentTextArea.id).setContent(comment.querySelector(".user_comment").innerHTML);
-    
-                // Event listener for save edit button
-                comment.querySelector(".save_edit").addEventListener("click", () => {
-                    let editedCommentText = tinymce.get(commentTextArea.id).getContent();
-                    if (editedCommentText.trim() == "") {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Can't save an empty comment!",
-                        });
-                    } else {
 
-                        fetch("/editcomment", {
-                            method: "PUT",
-                            headers: {
-                                "Content-Type": "application/json",
-                                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-                            },
-                            body: JSON.stringify({id:comment_id,comment:editedCommentText}),
-                        })
-                            .then((response) => response.json())
-                            .then((data) => {
-                                if (data.success) {
-                                    comment.querySelector(".user_comment").innerHTML = editedCommentText;
-                                    // Hide edit interface, show user comment and edit/delete buttons
-                                    comment.querySelector(".user_pfp").style.display = "block";
-                                    comment.querySelector(".edit_comment").style.display = "inline";
-                                    comment.querySelector(".delete_comment").style.display = "inline";
-                                    comment.querySelector(".comment_edit").style.display = "none";
-                                }
+                    commentTextArea.classList.add("tinymce-initialized");
+                }
+
+                // Set content of TinyMCE editor with current comment text
+                tinymce
+                    .get(commentTextArea.id)
+                    .setContent(
+                        comment.querySelector(".user_comment").innerHTML
+                    );
+
+                // Event listener for save edit button
+                comment
+                    .querySelector(".save_edit")
+                    .addEventListener("click", () => {
+                        let editedCommentText = tinymce
+                            .get(commentTextArea.id)
+                            .getContent();
+                        if (editedCommentText.trim() == "") {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: "Can't save an empty comment!",
                             });
-                    }
-                });
-    
+                        } else {
+                            fetch("/editcomment", {
+                                method: "PUT",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "X-CSRF-TOKEN": document
+                                        .querySelector(
+                                            'meta[name="csrf-token"]'
+                                        )
+                                        .getAttribute("content"),
+                                },
+                                body: JSON.stringify({
+                                    id: comment_id,
+                                    comment: editedCommentText,
+                                }),
+                            })
+                                .then((response) => response.json())
+                                .then((data) => {
+                                    if (data.success) {
+                                        comment.querySelector(
+                                            ".user_comment"
+                                        ).innerHTML = editedCommentText;
+                                        // Hide edit interface, show user comment and edit/delete buttons
+                                        comment.querySelector(
+                                            ".user_pfp"
+                                        ).style.display = "block";
+                                        comment.querySelector(
+                                            ".edit_comment"
+                                        ).style.display = "inline";
+                                        comment.querySelector(
+                                            ".delete_comment"
+                                        ).style.display = "inline";
+                                        comment.querySelector(
+                                            ".comment_edit"
+                                        ).style.display = "none";
+                                    }
+                                });
+                        }
+                    });
+
                 // Event listener for cancel edit button
-                comment.querySelector(".cancel_edit").addEventListener("click", () => {
-                    // Hide edit interface, show user comment and edit/delete buttons
-                    comment.querySelector(".user_pfp").style.display = "block";
-                    comment.querySelector(".edit_comment").style.display = "inline";
-                    comment.querySelector(".delete_comment").style.display = "inline";
-                    comment.querySelector(".comment_edit").style.display = "none";
-                });
+                comment
+                    .querySelector(".cancel_edit")
+                    .addEventListener("click", () => {
+                        // Hide edit interface, show user comment and edit/delete buttons
+                        comment.querySelector(".user_pfp").style.display =
+                            "block";
+                        comment.querySelector(".edit_comment").style.display =
+                            "inline";
+                        comment.querySelector(".delete_comment").style.display =
+                            "inline";
+                        comment.querySelector(".comment_edit").style.display =
+                            "none";
+                    });
             });
         });
     }
-    
-
-
-
-
-
-
-
 
     closeBtn.addEventListener("click", () => {
         editBar.classList.add("closebar");
@@ -711,15 +866,16 @@ document.addEventListener("DOMContentLoaded", function () {
     if (descriptionData.innerHTML.trim()) {
         descriptionClick.style.display = "none";
     }
-
-    descriptionClick.addEventListener("click", () => {
-        originalDescription = descriptionData.innerHTML || "";
-        descriptionClick.style.display = "none";
-        descriptionEditor.style.display = "block";
-        descriptionData.style.display = "none";
-        tinymce.get("descriptionEditor").setContent(originalDescription);
-        tinymce.execCommand("mceFocus", false, "descriptionEditor");
-    });
+    if (isAdmin) {
+        descriptionClick.addEventListener("click", () => {
+            originalDescription = descriptionData.innerHTML || "";
+            descriptionClick.style.display = "none";
+            descriptionEditor.style.display = "block";
+            descriptionData.style.display = "none";
+            tinymce.get("descriptionEditor").setContent(originalDescription);
+            tinymce.execCommand("mceFocus", false, "descriptionEditor");
+        });
+    }
 
     descriptionData.addEventListener("click", () => {
         if (descriptionData.innerHTML.trim()) {
@@ -733,22 +889,27 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     saveDescription.addEventListener("click", () => {
-        let task_id = document.querySelector(".taskname_bar").getAttribute("data-task_id");
+        let task_id = document
+            .querySelector(".taskname_bar")
+            .getAttribute("data-task_id");
         const content = tinymce.get("descriptionEditor").getContent().trim();
-        console.log(content,'empty')
-        if(content=='') {
+        console.log(content, "empty");
+        if (content == "") {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
                 text: "Description cannot be empty!",
             });
-            return
+            return;
         }
+
         fetch("/savedescription", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                "X-CSRF-TOKEN": document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content"),
             },
             body: JSON.stringify({ id: task_id, description: content }),
         })
@@ -760,9 +921,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         descriptionEditor.style.display = "none";
                         descriptionClick.style.display = "none";
                         descriptionData.style.display = "block";
-                    }
-                   
-                    else {
+                    } else {
                         Swal.fire({
                             icon: "error",
                             title: "Oops...",
@@ -789,7 +948,8 @@ document.addEventListener("DOMContentLoaded", function () {
     tinymce.init({
         selector: "#comment, #comment_user",
         plugins: "code table lists image",
-        toolbar: "undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | image",
+        toolbar:
+            "undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | image",
         image_title: true,
         automatic_uploads: true,
         file_picker_types: "image",
@@ -829,20 +989,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // Save the comment and append it to the container
     saveCommentButton.addEventListener("click", () => {
         let commentText = tinymce.get("comment").getContent();
-        let task_id = document.querySelector(".taskname_bar").getAttribute("data-task_id");
-        if(commentText==''){
+        let task_id = document
+            .querySelector(".taskname_bar")
+            .getAttribute("data-task_id");
+        if (commentText == "") {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
                 text: "Can't save an empty comment!",
             });
-            return
+            return;
         }
         fetch("/savecomment", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                "X-CSRF-TOKEN": document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content"),
             },
             body: JSON.stringify({ task_id: task_id, comment: commentText }),
         })
@@ -865,11 +1029,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         <button class="edit_comment">Edit</button>
                         <button class="delete_comment">Delete</button>
                     `;
-                    commentContainer.insertBefore(comment, commentContainer.firstChild);
+                    commentContainer.insertBefore(
+                        comment,
+                        commentContainer.firstChild
+                    );
                     tinymce.get("comment").setContent("");
                     tinyComment.style.display = "none";
                     commentClick.style.display = "inline";
-                    deletedcomment_clicks = document.querySelectorAll(".delete_comment");
+                    deletedcomment_clicks =
+                        document.querySelectorAll(".delete_comment");
                     Deletecomment();
                     editComment();
                 } else {
@@ -895,7 +1063,8 @@ document.addEventListener("DOMContentLoaded", function () {
     tinymce.init({
         selector: "#descriptionEditor",
         plugins: "code table lists image",
-        toolbar: "undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | image",
+        toolbar:
+            "undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | image",
         image_title: true,
         automatic_uploads: true,
         file_picker_types: "image",
